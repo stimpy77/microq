@@ -1,5 +1,6 @@
 # microq
-tl;dr drop-in alternative to jquery for otherwise vanilla js, mq.js=clean, mqc.js=chaining
+
+tl;dr drop-in alternative to jquery for otherwise vanilla js, mq.js = clean, mqc.js = chaining
 
 ### moar (because ChatGPT can) ....
 
@@ -15,13 +16,13 @@ mq.js is a tiny helper library for DOM manipulation, event handling, class toggl
 
 ### CDN (Recommended for Now)
 
-Since MicroQ isn't an npm module (yet), just copy `mq.js` into your project or use a CDN solution like [jsDelivr](https://www.jsdelivr.com/) if you self-host.
+Since MicroQ isn't an npm module (yet), just copy `mq.js` or `mqc.js` into your project or use a CDN solution like [jsDelivr](https://www.jsdelivr.com/) if you self-host.
 
 ```html
-<script src="path/to/mq.js"></script>
+<!-- Choose either one -->
+<script src="path/to/mq.js"></script>     <!-- classic -->
+<script src="path/to/mqc.js"></script>    <!-- chainable -->
 ```
-
-Or use directly in a `<script type="module">` setup.
 
 ---
 
@@ -51,9 +52,15 @@ Or use directly in a `<script type="module">` setup.
 ### 🔍 Select Elements
 
 ```js
-const boxes = $('.box');           // All boxes
-const firstBox = $1st('.box');     // First one (by the way that's a numeral `1` not a lower-cased `L`)
-const lastBox = $1ast('.box');     // Last one (numeral `1`)
+// mq.js
+const boxes = $('.box');
+const firstBox = $1st('.box');
+const lastBox = $1ast('.box');
+
+// mqc.js (same)
+const boxes = $('.box');
+const firstBox = $1st('.box');
+const lastBox = $1ast('.box');
 ```
 
 ---
@@ -61,7 +68,13 @@ const lastBox = $1ast('.box');     // Last one (numeral `1`)
 ### 🔁 Loop Through Elements
 
 ```js
+// mq.js
 $ea($('.box'), (i, el) => {
+  console.log(`Box ${i}:`, el);
+});
+
+// mqc.js
+$('.box').$ea((i, el) => {
   console.log(`Box ${i}:`, el);
 });
 ```
@@ -71,7 +84,13 @@ $ea($('.box'), (i, el) => {
 ### 🧲 Event Binding
 
 ```js
+// mq.js
 $eon($('.btn'), 'click', function () {
+  alert(`You clicked ${this.textContent}`);
+});
+
+// mqc.js
+$('.btn').$eon('click', function () {
   alert(`You clicked ${this.textContent}`);
 });
 ```
@@ -81,9 +100,16 @@ $eon($('.btn'), 'click', function () {
 ### 🎭 Toggle Classes
 
 ```js
+// mq.js
 $addClass($('.box'), 'highlight');
 $removeClass($('.box'), 'hidden');
 $toggleClass($('.box'), 'active');
+
+// mqc.js
+$('.box')
+  .$addClass('highlight')
+  .$removeClass('hidden')
+  .$toggleClass('active');
 ```
 
 ---
@@ -91,7 +117,14 @@ $toggleClass($('.box'), 'active');
 ### 🎨 Apply CSS
 
 ```js
+// mq.js
 $css($('.box'), {
+  backgroundColor: 'gold',
+  transform: 'scale(1.05)',
+});
+
+// mqc.js
+$('.box').$css({
   backgroundColor: 'gold',
   transform: 'scale(1.05)',
 });
@@ -102,11 +135,13 @@ $css($('.box'), {
 ### 🏷️ Attributes
 
 ```js
-// Get
+// mq.js
 console.log($attr($('.link'), 'href'));
-
-// Set
 $attr($('.link'), 'target', '_blank');
+
+// mqc.js
+console.log($('.link').$attr('href'));
+$('.link').$attr('target', '_blank');
 ```
 
 ---
@@ -114,8 +149,13 @@ $attr($('.link'), 'target', '_blank');
 ### 🧠 Content Manipulation
 
 ```js
+// mq.js
 $html($('.box'), '<strong>Updated!</strong>');
 $text($('.box'), 'Just text please.');
+
+// mqc.js
+$('.box').$html('<strong>Updated!</strong>');
+$('.box').$text('Just text please.');
 ```
 
 ---
@@ -123,8 +163,18 @@ $text($('.box'), 'Just text please.');
 ### 🌍 Fetch Content
 
 ```js
+// mq.js
 $get('/data/sample.txt').then(content => {
   $html($('.output'), content);
+});
+
+$getJSON('/data/user.json').then(data => {
+  console.log('User:', data.name);
+});
+
+// mqc.js (same)
+$get('/data/sample.txt').then(content => {
+  $('.output').$html(content);
 });
 
 $getJSON('/data/user.json').then(data => {
@@ -134,16 +184,32 @@ $getJSON('/data/user.json').then(data => {
 
 ---
 
+### 🍝 Full-Chain Example (mqc.js only)
+
+```js
+$('.box')
+  .$addClass('highlight')
+  .$css({ backgroundColor: 'gold' })
+  .$ea((i, el) => {
+    el.textContent = `Box ${i}`;
+  })
+  .$eon('click', () => alert('Clicked!'))
+  .$removeClass('hidden')
+  .$html('<strong>Updated!</strong>');
+```
+
+---
+
 ## 🧪 MicroQ vs jQuery
 
-| Task      | jQuery              | MicroQ                  |
-| --------- | ------------------- | ----------------------- |
-| Select    | `$('.box')`         | `$('.box')`             |
-| First     | `$('.box').first()` | `$1st('.box')`          |
-| Add class | `.addClass()`       | `$addClass()`           |
-| Click     | `.on('click', fn)`  | `$eon()`                |
-| CSS       | `.css()`            | `$css()`                |
-| Ajax      | `$.get()`           | `$get()` / `$getJSON()` |
+| Task      | jQuery              | MicroQ (mq.js)          | MicroQ (mqc.js)         |
+| --------- | ------------------- | ----------------------- | ----------------------- |
+| Select    | `$('.box')`         | `$('.box')`             | `$('.box')`             |
+| First     | `$('.box').first()` | `$1st('.box')`          | `$1st('.box')`          |
+| Add class | `.addClass()`       | `$addClass(el, cls)`    | `$(el).$addClass(cls)`  |
+| Click     | `.on('click', fn)`  | `$eon(el, evt, fn)`     | `$(el).$eon(evt, fn)`   |
+| CSS       | `.css()`            | `$css(el, styles)`      | `$(el).$css(styles)`    |
+| Ajax      | `$.get()`           | `$get()` / `$getJSON()` | `$get()` / `$getJSON()` |
 
 ---
 
@@ -175,9 +241,15 @@ $getJSON('/data/user.json').then(data => {
 </div>
 
 <script>
+  // mq.js
   $eon($('.question'), 'click', function () {
     const answer = this.nextElementSibling;
     $toggleClass([answer], 'hidden');
+  });
+
+  // mqc.js
+  $('.question').$eon('click', function () {
+    $(this.nextElementSibling).$toggleClass('hidden');
   });
 </script>
 ```
@@ -188,6 +260,7 @@ $getJSON('/data/user.json').then(data => {
 
 * `$()` returns a **NodeList**, not an Array — but still `.forEach()`-able.
 * `$attr`, `$html`, `$text` all assume you're fine with modifying the **first element** when getting values.
+* Chainable version (`mqc.js`) doesn't mutate `NodeList.prototype`, it just returns `p` for chaining.
 
 ---
 
@@ -211,7 +284,3 @@ MIT — use it freely, remix, and share 🍻
 ## ✨ Author
 
 Made by [@stimpy77](https://github.com/stimpy77), with love for the DOM and dry humor.
-
----
-
-Let me know if you’d like the README in Markdown file format or want to add logo/CDN support/npm packaging instructions.
