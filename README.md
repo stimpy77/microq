@@ -79,10 +79,20 @@ $('.box').$addClass('loaded');
 ### `$1st()` – First match (btw it's 1st with a numeral 1 not lowercase 'L')
 
 ```js
+
+// Get first element
 const firstBox = $1st('.box');
 
-// Chaining (used with other methods)
+// Chaining:
+
+// Use with vanilla JS methods
 $1st('.box').classList.add('first');
+
+// Chaining from query - useful for complex selectors
+$('.box:not(.hidden)').$1st().classList.add('first-visible');
+
+// Or continue with thparq chaining
+$('.box').$1st().$addClass('primary').$css({ border: '2px solid blue' });
 ```
 
 ---
@@ -93,7 +103,18 @@ $1st('.box').classList.add('first');
 const lastBox = $1ast('.box');
 
 // Chaining (used with other methods)
+
+// Get last element
+const lastBox = $1ast('.box');
+
+// Use with vanilla JS methods
 $1ast('.box').classList.add('last');
+
+// Chaining from query - useful for filtered selections
+$('.box.active').$1ast().classList.add('last-active');
+
+// Or continue with thparq chaining
+$('.box').$1ast().$addClass('final').$css({ opacity: '0.8' });
 ```
 
 ---
