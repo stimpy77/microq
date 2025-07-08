@@ -1,5 +1,5 @@
 # microq
-tl;dr drop-in alternative to jquery for otherwise vanilla js
+tl;dr drop-in alternative to jquery for otherwise vanilla js, mq.js=clean, mqc.js=chaining
 
 ### moar (because ChatGPT can) ....
 
