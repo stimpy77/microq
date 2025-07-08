@@ -52,8 +52,8 @@ Or use directly in a `<script type="module">` setup.
 
 ```js
 const boxes = $('.box');           // All boxes
-const firstBox = $1st('.box');     // First one
-const lastBox = $1ast('.box');     // Last one
+const firstBox = $1st('.box');     // First one (by the way that's a numeral `1` not a lower-cased `L`)
+const lastBox = $1ast('.box');     // Last one (numeral `1`)
 ```
 
 ---
