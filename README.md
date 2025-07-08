@@ -77,7 +77,7 @@ $('.box').$addClass('loaded');
 
 ---
 
-### `$1st()` – First match
+### `$1st()` – First match (btw it's 1st with a numeral 1 not lowercase 'L')
 
 ```js
 // Non-chaining
@@ -89,7 +89,7 @@ $1st('.box').classList.add('first');
 
 ---
 
-### `$1ast()` – Last match
+### `$1ast()` – Last match (again it's 1ast with a numeral 1 not lowercase 'L')
 
 ```js
 // Non-chaining
