@@ -2,7 +2,7 @@
 
 the name is like "spark" but with a weird lithp.
 
-tl;dr drop-in alternative to jquery for otherwise vanilla js
+tl;dr drop-in alternative to jquery to put the thpark back in your vanilla JS
 
 ````javascript
 const selectedElements = $("li.hello");
