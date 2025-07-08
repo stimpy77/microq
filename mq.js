@@ -54,3 +54,15 @@ const $1ast = selector => $(selector)[$(selector).length - 1] || null; // Last m
 // Get the length of the NodeList (with chaining support)
 const $len = p => $_wrap(p).length; // Length of selected nodes
 
+// Add methods to NodeList prototype for chaining
+NodeList.prototype.$ea = function(fn) { return $ea(this, fn); };
+NodeList.prototype.$eon = function(e, fn) { return $eon(this, e, fn); };
+NodeList.prototype.$addClass = function(c) { return $addClass(this, c); };
+NodeList.prototype.$removeClass = function(c) { return $removeClass(this, c); };
+NodeList.prototype.$toggleClass = function(c) { return $toggleClass(this, c); };
+NodeList.prototype.$css = function(s) { return $css(this, s); };
+NodeList.prototype.$attr = function(n, v) { return $attr(this, n, v); };
+NodeList.prototype.$html = function(h) { return $html(this, h); };
+NodeList.prototype.$text = function(t) { return $text(this, t); };
+NodeList.prototype.$len = function() { return $len(this); };
+
