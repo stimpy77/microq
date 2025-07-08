@@ -24,14 +24,6 @@ const selectedElements = $("li.hello");
 <script src="path/to/thparq.min.js"></script>
 ```
 
-or
-
-```html
-<script type="module">
-  import './thparq.js';
-</script>
-```
-
 or just paste the compressed version in at the top of your regular script
 
 ```html
