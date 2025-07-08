@@ -68,7 +68,6 @@ const _$d=document.querySelectorAll,_$n=NodeList.prototype,$=t=>_$d(t),$_wrap=t=
 ### `$()` – Select elements
 
 ```js
-// Non-chaining
 const boxes = $('.box');
 
 // Chaining
@@ -80,7 +79,6 @@ $('.box').$addClass('loaded');
 ### `$1st()` – First match (btw it's 1st with a numeral 1 not lowercase 'L')
 
 ```js
-// Non-chaining
 const firstBox = $1st('.box');
 
 // Chaining (used with other methods)
@@ -92,7 +90,6 @@ $1st('.box').classList.add('first');
 ### `$1ast()` – Last match (again it's 1ast with a numeral 1 not lowercase 'L')
 
 ```js
-// Non-chaining
 const lastBox = $1ast('.box');
 
 // Chaining (used with other methods)
@@ -105,7 +102,7 @@ $1ast('.box').classList.add('last');
 
 ```js
 // Non-chaining
-$ea($('.box'), (i, el) => {
+$ea('.box', (i, el) => {
   el.textContent = `Box ${i}`;
 });
 
@@ -121,7 +118,7 @@ $('.box').$ea((i, el) => {
 
 ```js
 // Non-chaining
-$eon($('.btn'), 'click', function () {
+$eon('.btn', 'click', function () {
   alert(`Clicked: ${this.textContent}`);
 });
 
@@ -137,7 +134,7 @@ $('.btn').$eon('click', function () {
 
 ```js
 // Non-chaining
-$addClass($('.box'), 'highlight');
+$addClass('.box', 'highlight');
 
 // Chaining
 $('.box').$addClass('highlight');
@@ -149,7 +146,7 @@ $('.box').$addClass('highlight');
 
 ```js
 // Non-chaining
-$removeClass($('.box'), 'hidden');
+$removeClass('.box', 'hidden');
 
 // Chaining
 $('.box').$removeClass('hidden');
@@ -161,7 +158,7 @@ $('.box').$removeClass('hidden');
 
 ```js
 // Non-chaining
-$toggleClass($('.box'), 'active');
+$toggleClass('.box', 'active');
 
 // Chaining
 $('.box').$toggleClass('active');
@@ -173,7 +170,7 @@ $('.box').$toggleClass('active');
 
 ```js
 // Non-chaining
-$css($('.box'), {
+$css('.box', {
   backgroundColor: 'gold',
   transform: 'scale(1.05)',
 });
@@ -194,7 +191,7 @@ $('.box').$css({
 const href = $attr($('.link'), 'href');
 
 // Set (non-chaining)
-$attr($('.link'), 'target', '_blank');
+$attr('.link', 'target', '_blank');
 
 // Get (chaining-safe, still non-chaining)
 const href = $('.link').$attr('href');
@@ -209,10 +206,10 @@ $('.link').$attr('target', '_blank');
 
 ```js
 // Get (non-chaining)
-const html = $html($('.box'));
+const html = $html('.box');
 
 // Set (non-chaining)
-$html($('.box'), '<strong>Updated!</strong>');
+$html('.box', '<strong>Updated!</strong>');
 
 // Get (chaining-safe)
 const html = $('.box').$html();
@@ -227,10 +224,10 @@ $('.box').$html('<strong>Updated!</strong>');
 
 ```js
 // Get (non-chaining)
-const text = $text($('.box'));
+const text = $text('.box');
 
 // Set (non-chaining)
-$text($('.box'), 'Hello');
+$text('.box', 'Hello');
 
 // Get (chaining-safe)
 const text = $('.box').$text();
