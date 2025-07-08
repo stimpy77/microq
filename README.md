@@ -19,7 +19,7 @@ const selectedElements = $("li.hello");
 ## 🚀 Quick Start
 
 ```html
-<script src="path/to/mq.js"></script>
+<script src="path/to/mq.min.js"></script>
 ```
 
 or
