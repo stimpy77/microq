@@ -32,7 +32,7 @@ or
 
 or just paste the compressed version in at the top of your regular script
 
-```javascript
+```html
 <script>
 
 // microq injection, see https://github.com/stimpy77/microq/
