@@ -3,50 +3,54 @@
 // we can still drink and be merry
 // without all that BS
 
-// 1. DOM Selection
-const $ = (selector, context = document) => context.querySelectorAll(selector);
-const $1st = (selector, context = document) => context.querySelector(selector); // First element
-const $1ast = (selector, context = document) => context.querySelectorAll(selector)[context.querySelectorAll(selector).length - 1]; // Last element
+// Selector (with chaining support)
+const $ = selector => document.querySelectorAll(selector);
 
-// 2. Looping through elements
-const $ea = (elements, callback) => {
-  elements.forEach((el, i) => callback.call(el, i, el));
+// Utility to auto-wrap if string selector
+const $_wrap = p => (typeof p === 'string' ? $(p) : p);
+
+// Loop through elements (with chaining support)
+const $ea = (p, fn) => ($_wrap(p).forEach(fn), p); // Chainable
+
+// Event listener (with chaining support)
+const $eon = (p, e, fn) => ($_wrap(p).forEach(el => el.addEventListener(e, fn)), p);
+
+// Add class (with chaining support)
+const $addClass = (p, c) => ($_wrap(p).forEach(el => el.classList.add(c)), p);
+
+// Remove class (with chaining support)
+const $removeClass = (p, c) => ($_wrap(p).forEach(el => el.classList.remove(c)), p);
+
+// Toggle class (with chaining support)
+const $toggleClass = (p, c) => ($_wrap(p).forEach(el => el.classList.toggle(c)), p);
+
+// Apply CSS styles (with chaining support)
+const $css = (p, s) => ($_wrap(p).forEach(el => Object.assign(el.style, s)), p);
+
+// Get/set attributes (with chaining support)
+const $attr = (p, n, v) => {
+  const elems = $_wrap(p);
+  return v === undefined ? elems[0]?.getAttribute(n) : (elems.forEach(el => el.setAttribute(n, v)), p); // Get/Set
 };
 
-// 3. Event Binding (Prefix with $eon to avoid 'on' collision)
-const $eon = (elements, event, handler) => {
-  $ea(elements, el => el.addEventListener(event, handler));
-};
+// Get/set innerHTML (with chaining support)
+const $html = (p, h) => (h === undefined ? $_wrap(p)[0]?.innerHTML : ($_wrap(p).forEach(el => el.innerHTML = h), p));
 
-// 4. Class Manipulation (Prefix with $ to avoid collision)
-const $addClass = (elements, className) => $ea(elements, el => el.classList.add(className));
-const $removeClass = (elements, className) => $ea(elements, el => el.classList.remove(className));
-const $toggleClass = (elements, className) => $ea(elements, el => el.classList.toggle(className));
+// Get/set textContent (with chaining support)
+const $text = (p, t) => (t === undefined ? $_wrap(p)[0]?.textContent : ($_wrap(p).forEach(el => el.textContent = t), p));
 
-// 5. CSS Manipulation
-const $css = (elements, styles) => $ea(elements, el => {
-  for (let prop in styles) {
-    el.style[prop] = styles[prop];
-  }
-});
+// Fetch raw text (with chaining support)
+const $get = (url) => fetch(url).then(res => res.text());
 
-// 6. Attribute Manipulation
-const $attr = (elements, name, value) => {
-  if (value === undefined) return elements[0]?.getAttribute(name);
-  $ea(elements, el => el.setAttribute(name, value));
-};
+// Fetch JSON (with chaining support)
+const $getJSON = (url) => fetch(url).then(res => res.json());
 
-// 7. HTML / Text Manipulation
-const $html = (elements, value) => {
-  if (value === undefined) return elements[0]?.innerHTML;
-  $ea(elements, el => el.innerHTML = value);
-};
+// Select first element (with chaining support)
+const $1st = selector => $(selector)[0] || null; // First match
 
-const $text = (elements, value) => {
-  if (value === undefined) return elements[0]?.textContent;
-  $ea(elements, el => el.textContent = value);
-};
+// Select last element (with chaining support)
+const $1ast = selector => $(selector)[$(selector).length - 1] || null; // Last match
 
-// 8. Async Fetch (if needed, but they're fine as is)
-const $get = async (url) => (await fetch(url)).text();
-const $getJSON = async (url) => (await fetch(url)).json();
+// Get the length of the NodeList (with chaining support)
+const $len = p => $_wrap(p).length; // Length of selected nodes
+
