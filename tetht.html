@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thparq Library Validation</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .test-section {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-result {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .box {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            background: #e0e0e0;
+            border: 2px solid #999;
+            text-align: center;
+            line-height: 100px;
+            transition: all 0.3s;
+        }
+        .btn {
+            padding: 10px 20px;
+            margin: 5px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+        .highlight {
+            background: yellow !important;
+        }
+        .hidden {
+            display: none;
+        }
+        .active {
+            border-color: #ff0000 !important;
+            border-width: 4px !important;
+        }
+        .ready {
+            opacity: 0.8;
+        }
+        .faq {
+            background: #f9f9f9;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .question {
+            cursor: pointer;
+            color: #007bff;
+            margin: 0;
+        }
+        .question:hover {
+            text-decoration: underline;
+        }
+        .answer {
+            margin-top: 10px;
+            padding: 10px;
+            background: white;
+            border-radius: 4px;
+        }
+        .link {
+            color: #007bff;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+        .output {
+            padding: 10px;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            margin: 10px 0;
+            min-height: 50px;
+        }
+        .name {
+            font-weight: bold;
+            color: #333;
+        }
+        .spark {
+            display: inline-block;
+            padding: 20px;
+            background: linear-gradient(45deg, #ffeb3b, #ff9800);
+            border-radius: 8px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            animation: sparkle 2s ease-in-out infinite;
+        }
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+    </style>
+</head>
+<body>
+    <h1>✨ Thparq Library Validation Test Suite</h1>
+    <div class="spark">We put the thpark back in your vanilla JS!</div>
+    <p>Testing all functions from the compressed inline version - now with the lithp!</p>
+
+    <!-- Test Elements -->
+    <div class="test-section">
+        <h2>Test Elements</h2>
+        <div class="box">Box 1</div>
+        <div class="box">Box 2</div>
+        <div class="box">Box 3</div>
+        <div class="box hidden">Box 4</div>
+        
+        <br>
+        
+        <button class="btn">Button 1</button>
+        <button class="btn">Button 2</button>
+        <button class="btn">Button 3</button>
+        
+        <br><br>
+        
+        <a href="https://example.com" class="link">Link 1</a>
+        <a href="https://google.com" class="link">Link 2</a>
+        
+        <div class="output"></div>
+        
+        <div class="name"></div>
+        
+        <div class="faq">
+            <h3 class="question">What is thparq?</h3>
+            <p class="answer hidden">A micro DOM utility library!</p>
+        </div>
+        
+        <div class="faq">
+            <h3 class="question">How does it work?</h3>
+            <p class="answer hidden">It provides jQuery-like syntax for vanilla JS!</p>
+        </div>
+    </div>
+
+    <!-- Test Results -->
+    <div class="test-section">
+        <h2>Test Results</h2>
+        <div id="results"></div>
+    </div>
+
+    <script>
+        // thparq injection, see https://github.com/stimpy77/thparq/
+        const _$d=document.querySelectorAll,_$n=NodeList.prototype,$=t=>_$d(t),$_wrap=t=>"string"==typeof t?$(t):t,$ea=(t,e)=>($_wrap(t).forEach(e),t),$eon=(t,e,r)=>($_wrap(t).forEach(t=>t.addEventListener(e,r)),t),$addClass=(t,e)=>($_wrap(t).forEach(t=>t.classList.add(e)),t),$removeClass=(t,e)=>($_wrap(t).forEach(t=>t.classList.remove(e)),t),$toggleClass=(t,e)=>($_wrap(t).forEach(t=>t.classList.toggle(e)),t),$css=(t,e)=>($_wrap(t).forEach(t=>Object.assign(t.style,e)),t),$attr=(t,e,r)=>{let o=$_wrap(t);return void 0===r?o[0]?.getAttribute(e):(o.forEach(t=>t.setAttribute(e,r)),t)},$html=(t,e)=>void 0===e?$_wrap(t)[0]?.innerHTML:($_wrap(t).forEach(t=>t.innerHTML=e),t),$text=(t,e)=>void 0===e?$_wrap(t)[0]?.textContent:($_wrap(t).forEach(t=>t.textContent=e),t),$get=t=>fetch(t).then(t=>t.text()),$getJSON=t=>fetch(t).then(t=>t.json()),$1st=t=>$(t)[0]||null,$1ast=t=>$(t)[$(t).length-1]||null,$len=t=>$_wrap(t).length;_$n.$ea=function(t){return $ea(this,t)},_$n.$eon=function(t,e){return $eon(this,t,e)},_$n.$addClass=function(t){return $addClass(this,t)},_$n.$removeClass=function(t){return $removeClass(this,t)},_$n.$toggleClass=function(t){return $toggleClass(this,t)},_$n.$css=function(t){return $css(this,t)},_$n.$attr=function(t,e){return $attr(this,t,e)},_$n.$html=function(t){return $html(this,t)},_$n.$text=function(t){return $text(this,t)},_$n.$len=function(){return $len(this)};
+
+        // Test runner
+        const results = document.getElementById('results');
+        let testCount = 0;
+        let passedCount = 0;
+
+        function logTest(name, success, details = '') {
+            testCount++;
+            if (success) passedCount++;
+            
+            const div = document.createElement('div');
+            div.className = `test-result ${success ? 'success' : 'error'}`;
+            div.innerHTML = `<strong>${success ? '✓' : '✗'} ${name}</strong>${details ? ': ' + details : ''}`;
+            results.appendChild(div);
+        }
+
+        // Run tests
+        try {
+            // Test $() - Select elements
+            const boxes = $('.box');
+            logTest('$() - Select elements', boxes.length === 4, `Found ${boxes.length} boxes`);
+
+            // Test $1st() - First match
+            const firstBox = $1st('.box');
+            logTest('$1st() - First match', firstBox && firstBox.textContent === 'Box 1', 'Got first box');
+
+            // Test $1ast() - Last match
+            const lastBox = $1ast('.box');
+            logTest('$1ast() - Last match', lastBox && lastBox.textContent === 'Box 4', 'Got last box (hidden)');
+
+            // Test $len() - Get length
+            const boxCount = $len('.box');
+            logTest('$len() - Get length', boxCount === 4, `Count: ${boxCount}`);
+
+            // NEW TEST: $ea() with direct selector string
+            let eaDirectTest = true;
+            $ea('.box', (i, el) => {
+                el.textContent = `Box ${i}`;
+                if (el.textContent !== `Box ${i}`) eaDirectTest = false;
+            });
+            logTest('$ea() - Direct selector string', eaDirectTest, 'Can pass selector directly');
+
+            // NEW TEST: $eon() with direct selector string
+            let eonDirectTest = false;
+            $eon('.btn', 'click', function () {
+                eonDirectTest = true;
+                this.style.background = '#28a745';
+            });
+            document.querySelector('.btn').click();
+            logTest('$eon() - Direct selector string', eonDirectTest, 'Event attached with selector string');
+
+            // NEW TEST: $addClass() with direct selector string
+            $addClass('.box', 'highlight');
+            const highlighted = document.querySelectorAll('.box.highlight').length;
+            logTest('$addClass() - Direct selector string', highlighted === 4, 'All boxes highlighted');
+            $removeClass('.box', 'highlight'); // cleanup
+
+            // NEW TEST: $removeClass() with direct selector string
+            $addClass('.box', 'test-class');
+            $removeClass('.box', 'test-class');
+            const noTestClass = document.querySelectorAll('.box.test-class').length;
+            logTest('$removeClass() - Direct selector string', noTestClass === 0, 'Class removed with selector');
+
+            // NEW TEST: $toggleClass() with direct selector string
+            $toggleClass('.box:nth-child(1)', 'active');
+            const hasActive = document.querySelector('.box.active') !== null;
+            logTest('$toggleClass() - Direct selector string', hasActive, 'Active class toggled');
+
+            // NEW TEST: $css() with direct selector string
+            $css('.box:nth-child(2)', {
+                backgroundColor: 'gold',
+                transform: 'scale(1.05)'
+            });
+            const styledBox = document.querySelector('.box:nth-child(2)');
+            const hasStyles = styledBox.style.backgroundColor === 'gold';
+            logTest('$css() - Direct selector string', hasStyles, 'CSS applied with selector');
+
+            // NEW TEST: $attr() - Set with direct selector string
+            $attr('.link', 'target', '_blank');
+            const hasTarget = document.querySelector('.link').getAttribute('target') === '_blank';
+            logTest('$attr() - Set with selector string', hasTarget, 'Target attribute set');
+
+            // NEW TEST: $html() - Get with direct selector string
+            $html('.output', '<strong>Test HTML</strong>');
+            const htmlContent = $html('.output');
+            logTest('$html() - Get with selector string', htmlContent === '<strong>Test HTML</strong>', 'HTML get works');
+
+            // NEW TEST: $text() - Get/Set with direct selector string
+            $text('.output', 'Test Text');
+            const textContent = $text('.output');
+            logTest('$text() - Get/Set with selector string', textContent === 'Test Text', 'Text get/set works');
+
+            // Test chaining methods still work
+            $('.box').$addClass('ready');
+            const readyBoxes = document.querySelectorAll('.box.ready').length;
+            logTest('Chaining - $addClass()', readyBoxes === 4, 'Chaining still works');
+
+            // Test $attr() - Get (from README example)
+            const href = $attr($('.link'), 'href');
+            logTest('$attr() - Get with wrapped elements', href === 'https://example.com', `Got href: ${href}`);
+
+            // Test FAQ example - Chaining style
+            $('.question').$eon('click', function () {
+                $(this.nextElementSibling).$toggleClass('hidden');
+            });
+            
+            // Test click on FAQ
+            const firstQuestion = document.querySelector('.question');
+            const firstAnswer = firstQuestion.nextElementSibling;
+            const wasHidden = firstAnswer.classList.contains('hidden');
+            firstQuestion.click();
+            const isNowVisible = !firstAnswer.classList.contains('hidden');
+            logTest('FAQ Example - Chaining', wasHidden && isNowVisible, 'FAQ toggle works');
+            firstQuestion.click(); // toggle back
+
+            // Test FAQ example - Non-chaining style with array
+            const questions = document.querySelectorAll('.question');
+            $eon($(questions[1]), 'click', function () {
+                $toggleClass([this.nextElementSibling], 'hidden');
+            });
+            
+            const secondQuestion = questions[1];
+            const secondAnswer = secondQuestion.nextElementSibling;
+            const wasHidden2 = secondAnswer.classList.contains('hidden');
+            secondQuestion.click();
+            const isNowVisible2 = !secondAnswer.classList.contains('hidden');
+            logTest('FAQ Example - Non-chaining', wasHidden2 && isNowVisible2, 'FAQ with array works');
+
+            // Test complex chaining from README
+            let complexChainWorks = true;
+            try {
+                $('.box:nth-child(3)')
+                    .$addClass('ready')
+                    .$css({ color: 'lime' })
+                    .$ea((i, el) => (el.dataset.index = i))
+                    .$html('<strong>Updated</strong>');
+                
+                const testBox = document.querySelector('.box:nth-child(3)');
+                complexChainWorks = testBox.classList.contains('ready') && 
+                                  testBox.style.color === 'lime' &&
+                                  testBox.innerHTML === '<strong>Updated</strong>' &&
+                                  testBox.dataset.index === '0';
+            } catch (e) {
+                complexChainWorks = false;
+            }
+            logTest('Complex Chaining Example', complexChainWorks, 'Full chain from README works');
+
+            // Test with NodeList/Element directly
+            const directBoxes = document.querySelectorAll('.box');
+            $addClass(directBoxes, 'test-direct');
+            const hasDirect = document.querySelectorAll('.box.test-direct').length === 4;
+            logTest('Direct NodeList usage', hasDirect, 'Works with DOM elements directly');
+
+            // Test $_wrap function with different inputs
+            const wrapped = $_wrap('.box');
+            const wrappedDirect = $_wrap(directBoxes);
+            const wrappedString = $_wrap('.btn');
+            logTest('$_wrap function', 
+                wrapped.length === 4 && wrappedDirect.length === 4 && wrappedString.length === 3, 
+                'Wraps selectors and elements correctly');
+
+            // Test edge case: empty selector
+            const emptyResult = $('.non-existent');
+            logTest('Empty selector result', emptyResult.length === 0, 'Returns empty NodeList');
+
+            // Test that methods handle empty selections gracefully
+            let noError = true;
+            try {
+                $addClass('.non-existent', 'test');
+                $css('.non-existent', { color: 'red' });
+                $text('.non-existent', 'test');
+            } catch (e) {
+                noError = false;
+            }
+            logTest('Empty selection handling', noError, 'Methods handle empty selections gracefully');
+
+        } catch (e) {
+            logTest('Critical Error', false, e.message);
+        }
+
+        // Summary
+        const summary = document.createElement('div');
+        summary.className = `test-result ${passedCount === testCount ? 'success' : 'error'}`;
+        summary.innerHTML = `<strong>Thummary: ${passedCount}/${testCount} tethts paththed!</strong>`;
+        summary.style.marginTop = '20px';
+        summary.style.fontSize = '18px';
+        results.appendChild(summary);
+
+        // Note about $get and $getJSON
+        const note = document.createElement('div');
+        note.className = 'test-result';
+        note.style.background = '#d1ecf1';
+        note.style.color = '#0c5460';
+        note.style.border = '1px solid #bee5eb';
+        note.innerHTML = '<strong>Note:</strong> $get() and $getJSON() require a therver environment to tetht properly. They are promithe-bathed fetch wrapperth.';
+        results.appendChild(note);
+
+        // Thpark note
+        const thparkNote = document.createElement('div');
+        thparkNote.className = 'test-result';
+        thparkNote.style.background = '#fff3cd';
+        thparkNote.style.color = '#856404';
+        thparkNote.style.border = '1px solid #ffeaa7';
+        thparkNote.style.marginTop = '10px';
+        thparkNote.innerHTML = '<strong>✨ Thpark Status:</strong> All non-chaining examples now accept direct thelector thtrings! Thith maketh the API even more conthise and jQuery-like!';
+        results.appendChild(thparkNote);
+    </script>
+</body>
+</html>
