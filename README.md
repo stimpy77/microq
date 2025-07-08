@@ -5,7 +5,7 @@ tl;dr drop-in alternative to jquery for otherwise vanilla js
 
 ***“For those who once loved jQuery, but now live vanilla.”***
 
-MicroQ is a tiny helper library for DOM manipulation, event handling, class toggling, and AJAX — lovingly crafted for nostalgic jQuery developers who don’t want the bloat but still want the *joy*.
+mq.js is a tiny helper library for DOM manipulation, event handling, class toggling, and AJAX — ~~lovingly crafted~~ hurriedly spewed out for nostalgic jQuery developers who don’t want the bloat but still want the terseness.
 
 > 🍷 **No dependencies. No build tools. Just drop it in and dance.**
 
