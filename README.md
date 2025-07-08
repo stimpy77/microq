@@ -1,8 +1,12 @@
 # microq
 
-tl;dr drop-in alternative to jquery for otherwise vanilla js, **`mq.js` = chainable, expressive, minimal**
+tl;dr drop-in alternative to jquery for otherwise vanilla js
 
-### moar (because ChatGPT can, hence all the stupid emojis) ...
+````javascript
+const selectedElements = $("li.hello");
+````
+
+### moar info below (because ChatGPT can, hence all the stupid emojis) ...
 
 ***“For those who once loved jQuery, but now live vanilla.”***
 
