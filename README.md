@@ -1,7 +1,3 @@
-Perfect — here’s your **new, tailored README**, keeping your original intro + style, and now showing **every function with both a chaining and non-chaining example** (where applicable).
-
----
-
 # microq
 
 tl;dr drop-in alternative to jquery for otherwise vanilla js, **`mq.js` = chainable, expressive, minimal**
