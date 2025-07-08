@@ -30,7 +30,7 @@ or
 </script>
 ```
 
-or just paste it in at the top of your regular script
+or just paste the compressed version in at the top of your regular script
 
 ```javascript
 <script>
