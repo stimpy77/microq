@@ -1,63 +1,50 @@
-// same as mq.js but with chain support
+// Utility to auto-wrap if string selector
+const $_wrap = p => (typeof p === 'string' ? $(p) : p);
 
-// 1. DOM Selection
-const $ = (selector, context = document) => {
-  const nodes = context.querySelectorAll(selector);
-  nodes.each = (cb) => { nodes.forEach((el, i) => cb.call(el, i, el)); return nodes; }; // Add a basic chaining method
-  return nodes;
-};
-const $1st = (selector, context = document) => context.querySelector(selector);
-const $1ast = (selector, context = document) => context.querySelectorAll(selector)[context.querySelectorAll(selector).length - 1];
+// Loop through elements (with chaining support)
+const $ea = (p, fn) => ($_wrap(p).forEach(fn), p); // Chainable
 
-// 2. Event Binding (fluent)
-const $eon = (elements, event, handler) => {
-  elements.each(el => el.addEventListener(event, handler));
-  return elements; // Return for chaining
-};
+// Event listener (with chaining support)
+const $eon = (p, e, fn) => ($_wrap(p).forEach(el => el.addEventListener(e, fn)), p);
 
-// 3. Class Manipulation (fluent)
-const $addClass = (elements, className) => {
-  elements.each(el => el.classList.add(className));
-  return elements; // Return for chaining
-};
-const $removeClass = (elements, className) => {
-  elements.each(el => el.classList.remove(className));
-  return elements;
-};
-const $toggleClass = (elements, className) => {
-  elements.each(el => el.classList.toggle(className));
-  return elements;
+// Add class (with chaining support)
+const $addClass = (p, c) => ($_wrap(p).forEach(el => el.classList.add(c)), p);
+
+// Remove class (with chaining support)
+const $removeClass = (p, c) => ($_wrap(p).forEach(el => el.classList.remove(c)), p);
+
+// Toggle class (with chaining support)
+const $toggleClass = (p, c) => ($_wrap(p).forEach(el => el.classList.toggle(c)), p);
+
+// Apply CSS styles (with chaining support)
+const $css = (p, s) => ($_wrap(p).forEach(el => Object.assign(el.style, s)), p);
+
+// Get/set attributes (with chaining support)
+const $attr = (p, n, v) => {
+  const elems = $_wrap(p);
+  return v === undefined ? elems[0]?.getAttribute(n) : (elems.forEach(el => el.setAttribute(n, v)), p); // Get/Set
 };
 
-// 4. CSS Manipulation
-const $css = (elements, styles) => {
-  elements.each(el => {
-    for (let prop in styles) {
-      el.style[prop] = styles[prop];
-    }
-  });
-  return elements;
-};
+// Get/set innerHTML (with chaining support)
+const $html = (p, h) => (h === undefined ? $_wrap(p)[0]?.innerHTML : ($_wrap(p).forEach(el => el.innerHTML = h), p));
 
-// 5. Attribute Manipulation
-const $attr = (elements, name, value) => {
-  if (value === undefined) return elements[0]?.getAttribute(name);
-  elements.each(el => el.setAttribute(name, value));
-  return elements;
-};
+// Get/set textContent (with chaining support)
+const $text = (p, t) => (t === undefined ? $_wrap(p)[0]?.textContent : ($_wrap(p).forEach(el => el.textContent = t), p));
 
-// 6. HTML / Text Manipulation
-const $html = (elements, value) => {
-  if (value === undefined) return elements[0]?.innerHTML;
-  elements.each(el => el.innerHTML = value);
-  return elements;
-};
-const $text = (elements, value) => {
-  if (value === undefined) return elements[0]?.textContent;
-  elements.each(el => el.textContent = value);
-  return elements;
-};
+// Fetch raw text (with chaining support)
+const $get = (url) => fetch(url).then(res => res.text());
 
-// 7. Async Fetch (if needed)
-const $get = async (url) => (await fetch(url)).text();
-const $getJSON = async (url) => (await fetch(url)).json();
+// Fetch JSON (with chaining support)
+const $getJSON = (url) => fetch(url).then(res => res.json());
+
+// Selector (with chaining support)
+const $ = selector => document.querySelectorAll(selector);
+
+// Select first element (with chaining support)
+const $1st = selector => $(selector)[0] || null; // First match
+
+// Select last element (with chaining support)
+const $1ast = selector => $(selector)[$(selector).length - 1] || null; // Last match
+
+// Get the length of the NodeList (with chaining support)
+const $len = p => $_wrap(p).length; // Length of selected nodes
