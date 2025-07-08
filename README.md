@@ -1,7 +1,7 @@
 # microq
 tl;dr drop-in alternative to jquery for otherwise vanilla js
 
-### moar ....
+### moar (because ChatGPT can) ....
 
 ***“For those who once loved jQuery, but now live vanilla.”***
 
