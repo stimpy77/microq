@@ -3,41 +3,36 @@
 // we can still drink and be merry
 // without all that BS
 
-// Selector (with chaining support)
-const $ = selector => document.querySelectorAll(selector);
-
-// Utility to auto-wrap if string selector
-const $_wrap = p => (typeof p === 'string' ? $(p) : p);
-
-// Loop through elements (with chaining support)
-const $ea = (p, fn) => ([].concat($_wrap(p)).filter(t => t).forEach(fn), p); // Chainable
-
-// Event listener (with chaining support)
-const $eon = (p, e, fn) => ([].concat($_wrap(p)).filter(t => t && t.addEventListener).forEach(el => el.addEventListener(e, fn)), p);
-
-// Add class (with chaining support)
-const $addClass = (p, c) => ([].concat($_wrap(p)).filter(t => t && t.classList).forEach(el => el.classList.add(c)), p);
-
-// Remove class (with chaining support)
-const $removeClass = (p, c) => ([].concat($_wrap(p)).filter(t => t && t.classList).forEach(el => el.classList.remove(c)), p);
-
-// Toggle class (with chaining support)
-const $toggleClass = (p, c) => ([].concat($_wrap(p)).filter(t => t && t.classList).forEach(el => el.classList.toggle(c)), p);
-
-// Apply CSS styles (with chaining support)
-const $css = (p, s) => ([].concat($_wrap(p)).filter(t => t && t.style).forEach(el => Object.assign(el.style, s)), p);
-
-// Get/set attributes (with chaining support)
-const $attr = (p, n, v) => {
-  const elems = $_wrap(p);
-  return v === undefined ? elems[0]?.getAttribute(n) : ([].concat(elems).filter(t => t && t.setAttribute).forEach(el => el.setAttribute(n, v)), p); // Get/Set
+const $ = s => {
+  if (typeof s === 'string') {
+    const e = document.querySelectorAll(s);
+    if (!Object.getPrototypeOf(e).$eon) Object.setPrototypeOf(e, NodeList.prototype);
+    return e;
+  }
+  if (s instanceof Node) {
+    const e = [s];
+    if (!Object.getPrototypeOf(e).$eon) Object.setPrototypeOf(e, NodeList.prototype);
+    return e;
+  }
+  if (s instanceof NodeList) {
+    if (!Object.getPrototypeOf(s).$eon) Object.setPrototypeOf(s, NodeList.prototype);
+    return s;
+  }
+  const e = [];
+  Object.setPrototypeOf(e, NodeList.prototype);
+  return e;
 };
 
-// Get/set innerHTML (with chaining support)
-const $html = (p, h) => (h === undefined ? $_wrap(p)[0]?.innerHTML : ([].concat($_wrap(p)).filter(t => t).forEach(el => el.innerHTML = h), p));
-
-// Get/set textContent (with chaining support)
-const $text = (p, t) => (t === undefined ? $_wrap(p)[0]?.textContent : ([].concat($_wrap(p)).filter(t => t).forEach(el => el.textContent = t), p));
+// Loop through elements (with chaining support)
+const $ea = (p, fn) => ($(p).forEach(fn), $(p));
+const $eon = (p, e, fn) => ($(p).forEach(el => el.addEventListener(e, fn)), $(p));
+const $addClass = (p, c) => ($(p).forEach(el => el.classList.add(c)), $(p));
+const $removeClass = (p, c) => ($(p).forEach(el => el.classList.remove(c)), $(p));
+const $toggleClass = (p, c) => ($(p).forEach(el => el.classList.toggle(c)), $(p));
+const $css = (p, s) => ($(p).forEach(el => Object.assign(el.style, s)), $(p));
+const $attr = (p, n, v) => v === undefined ? $(p)[0]?.getAttribute(n) : ($(p).forEach(el => el.setAttribute(n, v)), $(p));
+const $html = (p, h) => h === undefined ? $(p)[0]?.innerHTML : ($(p).forEach(el => el.innerHTML = h), $(p));
+const $text = (p, t) => t === undefined ? $(p)[0]?.textContent : ($(p).forEach(el => el.textContent = t), $(p));
 
 // Fetch raw text (with chaining support)
 const $get = (url) => fetch(url).then(res => res.text());
@@ -52,7 +47,7 @@ const $1st = selector => $(selector)[0] || null; // First match
 const $1ast = selector => $(selector)[$(selector).length - 1] || null; // Last match
 
 // Get the length of the NodeList (with chaining support)
-const $len = p => $_wrap(p).length; // Length of selected nodes
+const $len = p => $(p).length;
 
 // Add methods to NodeList prototype for chaining
 NodeList.prototype.$ea = function(fn) { return $ea(this, fn); };
