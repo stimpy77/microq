@@ -18,7 +18,16 @@ const selectedElements = $("li.hello");
 
 ## 🎯 Demo
 
-[**Live Demo**](https://claude.ai/public/artifacts/8733180f-5749-4b2e-bb69-1a8bfeef9f75) | [Demo Source](demo.html)
+✨ **[**Live Interactive Demo**](https://stimpy77.github.io/thparq/demo.html)** ✨
+
+**Features showcased:**
+- 🎯 **Dynamic Form Builder** with live data updates
+- 🃏 **Interactive Card System** with drag & drop, starring, and filtering  
+- 🌳 **DOM Tree Explorer** with highlighting and manipulation
+- 💬 **Real-time Chat Simulator** with message stats
+- 🛝 **Live Code Playground** with runnable examples
+
+[Demo Source Code](docs/demo.html)
 
 ---
 
