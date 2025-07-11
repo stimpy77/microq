@@ -173,128 +173,6 @@
             50% { transform: translateY(-20px) rotate(180deg); }
         }
 
-        /* View Source Styles */
-        .view-source-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: rgba(78, 205, 196, 0.2);
-            border: 1px solid #4ecdc4;
-            color: #4ecdc4;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-
-        .view-source-btn:hover {
-            background: rgba(78, 205, 196, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .demo-section {
-            position: relative;
-        }
-
-        .source-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            overflow-y: auto;
-        }
-
-        .source-modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-        }
-
-        .source-content {
-            background: #1a1a3e;
-            border: 1px solid #4ecdc4;
-            border-radius: 15px;
-            max-width: 90vw;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-        }
-
-        .source-header {
-            padding: 1rem 2rem;
-            border-bottom: 1px solid #4ecdc4;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(78, 205, 196, 0.1);
-        }
-
-        .source-header h3 {
-            color: #4ecdc4;
-            margin: 0;
-        }
-
-        .close-modal {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: #ff6b6b;
-            cursor: pointer;
-            padding: 0.25rem 0.5rem;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-
-        .close-modal:hover {
-            background: rgba(255, 107, 107, 0.2);
-        }
-
-        .source-body {
-            padding: 1.5rem;
-        }
-
-        .source-section {
-            margin-bottom: 2rem;
-        }
-
-        .source-section h4 {
-            color: #ffe66d;
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-
-        .source-code {
-            background: #0f0f23;
-            border: 1px solid #333;
-            border-radius: 8px;
-            padding: 1rem;
-            overflow-x: auto;
-            font-family: 'Fira Code', 'Monaco', 'Menlo', monospace;
-            font-size: 0.85rem;
-            line-height: 1.4;
-            color: #e0e0e0;
-        }
-
-        .source-code .keyword {
-            color: #ff6b6b;
-        }
-
-        .source-code .string {
-            color: #4ecdc4;
-        }
-
-        .source-code .comment {
-            color: #888;
-            font-style: italic;
-        }
-
         /* Form elements */
         .form-demo input {
             background: rgba(255, 255, 255, 0.1);
@@ -879,13 +757,148 @@
             color: #4ecdc4;
             text-decoration: none;
         }
+
+        /* View Source Modal */
+        .view-source-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(78, 205, 196, 0.9);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .view-source-btn:hover {
+            background: rgba(78, 205, 196, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(78, 205, 196, 0.4);
+        }
+
+        .demo-section {
+            position: relative;
+        }
+
+        .source-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #1e1e1e;
+            border-radius: 12px;
+            max-width: 90vw;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-header {
+            background: #2d2d2d;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #444;
+        }
+
+        .modal-title {
+            color: #4ecdc4;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: #ccc;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ff6b6b;
+        }
+
+        .modal-body {
+            padding: 0;
+            overflow-y: auto;
+            max-height: calc(90vh - 80px);
+        }
+
+        .source-section {
+            border-bottom: 1px solid #333;
+        }
+
+        .source-section:last-child {
+            border-bottom: none;
+        }
+
+        .source-header {
+            background: #2a2a2a;
+            padding: 0.75rem 1.5rem;
+            color: #4ecdc4;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #333;
+        }
+
+        .source-code {
+            background: #1e1e1e;
+            color: #e0e0e0;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            padding: 1.5rem;
+            margin: 0;
+            overflow-x: auto;
+        }
+
+        .source-code .keyword {
+            color: #c678dd;
+        }
+
+        .source-code .string {
+            color: #98c379;
+        }
+
+        .source-code .comment {
+            color: #7f848e;
+            font-style: italic;
+        }
+
+        .source-code .function {
+            color: #61afef;
+        }
+
+        .source-code .selector {
+            color: #e06c75;
+        }
     </style>
 </head>
 <body>
-    <!-- thparq injection -->
-    <script>
-        const _$ogpo=Object.getPrototypeOf;const _$ospo=Object.setPrototypeOf;const _$nlp=NodeList.prototype;const $=t=>{if("string"==typeof t){let e=document.querySelectorAll(t);return _$ogpo(e).$eon||_$ospo(e,_$nlp),e}if(t instanceof Node){let o=[t];return _$ogpo(o).$eon||_$ospo(o,_$nlp),o}if(t instanceof NodeList)return _$ogpo(t).$eon||_$ospo(t,_$nlp),t;let r=[];return _$ospo(r,_$nlp),r},$ea=(t,e)=>($(t).forEach((el,i)=>e(i,el)),$(t)),$eon=(t,e,o)=>($(t).forEach(t=>t.addEventListener(e,o)),$(t)),$addClass=(t,e)=>($(t).forEach(t=>t.classList.add(e)),$(t)),$removeClass=(t,e)=>($(t).forEach(t=>t.classList.remove(e)),$(t)),$toggleClass=(t,e)=>($(t).forEach(t=>t.classList.toggle(e)),$(t)),$css=(t,e)=>($(t).forEach(t=>Object.assign(t.style,e)),$(t)),$attr=(t,e,o)=>void 0===o?$(t)[0]?.getAttribute(e):($(t).forEach(t=>t.setAttribute(e,o)),$(t)),$html=(t,e)=>void 0===e?$(t)[0]?.innerHTML:($(t).forEach(t=>t.innerHTML=e),$(t)),$text=(t,e)=>void 0===e?$(t)[0]?.textContent:($(t).forEach(t=>t.textContent=e),$(t)),$get=t=>fetch(t).then(t=>t.text()),$getJSON=t=>fetch(t).then(t=>t.json()),$1st=t=>$(t)[0]||null,$1ast=t=>$(t)[$(t).length-1]||null,$len=t=>$(t).length,$val=(t,e)=>void 0===e?$(t)[0]?.value:($(t).forEach(t=>t.value=e),$(t)),$hasClass=(t,e)=>$(t)[0]?.classList.contains(e)||!1,$append=(t,e)=>($(t).forEach(t=>{"string"==typeof e?t.insertAdjacentHTML("beforeend",e):e instanceof Node&&t.appendChild(e)}),$(t)),$prepend=(t,e)=>($(t).forEach(t=>{"string"==typeof e?t.insertAdjacentHTML("afterbegin",e):e instanceof Node&&t.insertBefore(e,t.firstChild)}),$(t)),$remove=t=>($(t).forEach(t=>t.remove()),$(t)),$parent=t=>{const e=Array.from($(t)).map(t=>t.parentElement).filter(Boolean),o=[...new Set(e)];return _$ospo(o,_$nlp),o},$find=(t,e)=>{const o=[];$(t).forEach(t=>{o.push(...t.querySelectorAll(e))});const r=[...new Set(o)];return _$ospo(r,_$nlp),r},$show=t=>($(t).forEach(t=>t.style.display=""),$(t)),$hide=t=>($(t).forEach(t=>t.style.display="none"),$(t)),$data=(t,e,o)=>{if(void 0===o)return void 0===e?$(t)[0]?.dataset:$(t)[0]?.dataset[e];return $(t).forEach(t=>t.dataset[e]=o),$(t)},$eonDelegated=(t,e,o,r)=>{return"function"==typeof o?$eon(t,e,o):($(t).forEach(t=>{t.addEventListener(e,t=>{t.target.matches(o)&&r.call(t.target,t)})}),$(t))};_$nlp.$ea=function(t){return $ea(this,t)},_$nlp.$eon=function(t,e,o){return o?$eonDelegated(this,t,e,o):$eon(this,t,e)},_$nlp.$addClass=function(t){return $addClass(this,t)},_$nlp.$removeClass=function(t){return $removeClass(this,t)},_$nlp.$toggleClass=function(t){return $toggleClass(this,t)},_$nlp.$css=function(t){return $css(this,t)},_$nlp.$attr=function(t,e){return $attr(this,t,e)},_$nlp.$html=function(t){return $html(this,t)},_$nlp.$text=function(t){return $text(this,t)},_$nlp.$len=function(){return $len(this)},_$nlp.$val=function(t){return $val(this,t)},_$nlp.$hasClass=function(t){return $hasClass(this,t)},_$nlp.$append=function(t){return $append(this,t)},_$nlp.$prepend=function(t){return $prepend(this,t)},_$nlp.$remove=function(){return $remove(this)},_$nlp.$parent=function(){return $parent(this)},_$nlp.$find=function(t){return $find(this,t)},_$nlp.$show=function(){return $show(this)},_$nlp.$hide=function(){return $hide(this)},_$nlp.$data=function(t,e){return $data(this,t,e)},_$nlp.$eonDelegated=function(t,e,o){return $eonDelegated(this,t,e,o)};
-    </script>
+
 
     <div class="container">
         <header class="header">
@@ -897,8 +910,8 @@
         </header>
 
         <!-- Interactive Box Demo -->
-        <section class="demo-section" data-demo="box-demo">
-            <button class="view-source-btn" data-demo="box-demo">👁️ View Source</button>
+        <section class="demo-section" id="interactive-demo">
+            <button class="view-source-btn" onclick="showSource('interactive-demo')">👁️ View Source</button>
             <h2>🎯 Interactive Elements</h2>
             <p>Click the boxes to see thparq in action!</p>
             <div class="box-grid">
@@ -921,8 +934,8 @@
         </section>
 
         <!-- Chaining Demo -->
-        <section class="demo-section" data-demo="chaining-demo">
-            <button class="view-source-btn" data-demo="chaining-demo">👁️ View Source</button>
+        <section class="demo-section" id="chaining-demo">
+            <button class="view-source-btn" onclick="showSource('chaining-demo')">👁️ View Source</button>
             <h2>⛓️ Method Chaining Magic</h2>
             <p>Watch how multiple operations chain together seamlessly!</p>
             <div class="animation-box" id="chain-demo"></div>
@@ -936,8 +949,8 @@
         </section>
 
         <!-- Event Handling Demo -->
-        <section class="demo-section" data-demo="event-demo">
-            <button class="view-source-btn" data-demo="event-demo">👁️ View Source</button>
+        <section class="demo-section" id="event-demo">
+            <button class="view-source-btn" onclick="showSource('event-demo')">👁️ View Source</button>
             <h2>🎪 Event Handling</h2>
             <p>Type something and watch the magic happen!</p>
             <div class="form-demo">
@@ -952,8 +965,8 @@
         </section>
 
         <!-- Dynamic Form Builder Demo -->
-        <section class="demo-section" data-demo="form-builder">
-            <button class="view-source-btn" data-demo="form-builder">👁️ View Source</button>
+        <section class="demo-section" id="form-builder-demo">
+            <button class="view-source-btn" onclick="showSource('form-builder-demo')">👁️ View Source</button>
             <h2>🏗️ Dynamic Form Builder</h2>
             <p>Watch as thparq creates forms on the fly with $append(), $val(), and event delegation!</p>
             <div id="form-builder">
@@ -974,8 +987,8 @@
         </section>
 
         <!-- Interactive Card System -->
-        <section class="demo-section" data-demo="card-system">
-            <button class="view-source-btn" data-demo="card-system">👁️ View Source</button>
+        <section class="demo-section" id="card-system-demo">
+            <button class="view-source-btn" onclick="showSource('card-system-demo')">👁️ View Source</button>
             <h2>🃏 Interactive Card System</h2>
             <p>Drag & drop cards with $parent(), $find(), $data(), and dynamic styling!</p>
             <div class="card-demo">
@@ -992,8 +1005,8 @@
         </section>
 
         <!-- Live Element Tree Explorer -->
-        <section class="demo-section" data-demo="tree-explorer">
-            <button class="view-source-btn" data-demo="tree-explorer">👁️ View Source</button>
+        <section class="demo-section" id="tree-explorer-demo">
+            <button class="view-source-btn" onclick="showSource('tree-explorer-demo')">👁️ View Source</button>
             <h2>🌳 DOM Tree Explorer</h2>
             <p>Explore parent-child relationships with $parent() and $find()!</p>
             <div class="tree-demo">
@@ -1035,8 +1048,8 @@
         </section>
 
         <!-- Real-time Chat Simulator -->
-        <section class="demo-section" data-demo="chat-simulator">
-            <button class="view-source-btn" data-demo="chat-simulator">👁️ View Source</button>
+        <section class="demo-section" id="chat-simulator-demo">
+            <button class="view-source-btn" onclick="showSource('chat-simulator-demo')">👁️ View Source</button>
             <h2>💬 Real-time Chat Simulator</h2>
             <p>See $prepend(), $append(), $hasClass(), and event delegation in action!</p>
             <div class="chat-demo">
@@ -1070,8 +1083,8 @@
         </section>
 
         <!-- Live Code Playground -->
-        <section class="demo-section" data-demo="code-playground">
-            <button class="view-source-btn" data-demo="code-playground">👁️ View Source</button>
+        <section class="demo-section" id="code-playground-demo">
+            <button class="view-source-btn" onclick="showSource('code-playground-demo')">👁️ View Source</button>
             <h2>🚀 Live Code Playground</h2>
             <p>Write thparq code and see it execute in real-time!</p>
             <div class="playground">
@@ -1106,6 +1119,19 @@ $('.demo-target').$css({background: 'gold'}).$text('Hello thparq!');">$('.demo-t
             </div>
         </section>
 
+        <!-- Source Modal -->
+        <div id="source-modal" class="source-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Demo Source Code</h3>
+                    <button class="close-btn" onclick="closeModal()">&times;</button>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    <!-- Source code will be populated here -->
+                </div>
+            </div>
+        </div>
+
         <footer class="footer">
             <p>Made with ❤️ using <a href="https://github.com/stimpy77/thparq" target="_blank">thparq.js</a></p>
             <p>Drop-in jQuery alternative for the modern web - Now with <strong>13 new jQuery methods!</strong></p>
@@ -1115,516 +1141,91 @@ $('.demo-target').$css({background: 'gold'}).$text('Hello thparq!');">$('.demo-t
         </footer>
     </div>
 
-    <!-- Source Code Modal -->
-    <div id="source-modal" class="source-modal">
-        <div class="source-content">
-            <div class="source-header">
-                <h3 id="modal-title">Demo Source Code</h3>
-                <button class="close-modal" id="close-modal">&times;</button>
-            </div>
-            <div class="source-body" id="modal-body">
-                <!-- Source code sections will be populated here -->
-            </div>
-        </div>
-    </div>
+    <!-- thparq.js injection -->
+    <script id="thparq-injection">
+        const _$ogpo=Object.getPrototypeOf;const _$ospo=Object.setPrototypeOf;const _$nlp=NodeList.prototype;const $=t=>{if("string"==typeof t){let e=document.querySelectorAll(t);return _$ogpo(e).$eon||_$ospo(e,_$nlp),e}if(t instanceof Node){let o=[t];return _$ogpo(o).$eon||_$ospo(o,_$nlp),o}if(t instanceof NodeList)return _$ogpo(t).$eon||_$ospo(t,_$nlp),t;let r=[];return _$ospo(r,_$nlp),r},$ea=(t,e)=>($(t).forEach((el,i)=>e(i,el)),$(t)),$eon=(t,e,o)=>($(t).forEach(t=>t.addEventListener(e,o)),$(t)),$addClass=(t,e)=>($(t).forEach(t=>t.classList.add(e)),$(t)),$removeClass=(t,e)=>($(t).forEach(t=>t.classList.remove(e)),$(t)),$toggleClass=(t,e)=>($(t).forEach(t=>t.classList.toggle(e)),$(t)),$css=(t,e)=>($(t).forEach(t=>Object.assign(t.style,e)),$(t)),$attr=(t,e,o)=>void 0===o?$(t)[0]?.getAttribute(e):($(t).forEach(t=>t.setAttribute(e,o)),$(t)),$html=(t,e)=>void 0===e?$(t)[0]?.innerHTML:($(t).forEach(t=>t.innerHTML=e),$(t)),$text=(t,e)=>void 0===e?$(t)[0]?.textContent:($(t).forEach(t=>t.textContent=e),$(t)),$get=t=>fetch(t).then(t=>t.text()),$getJSON=t=>fetch(t).then(t=>t.json()),$1st=t=>$(t)[0]||null,$1ast=t=>$(t)[$(t).length-1]||null,$len=t=>$(t).length,$val=(t,e)=>void 0===e?$(t)[0]?.value:($(t).forEach(t=>t.value=e),$(t)),$hasClass=(t,e)=>$(t)[0]?.classList.contains(e)||!1,$append=(t,e)=>($(t).forEach(t=>{"string"==typeof e?t.insertAdjacentHTML("beforeend",e):e instanceof Node&&t.appendChild(e)}),$(t)),$prepend=(t,e)=>($(t).forEach(t=>{"string"==typeof e?t.insertAdjacentHTML("afterbegin",e):e instanceof Node&&t.insertBefore(e,t.firstChild)}),$(t)),$remove=t=>($(t).forEach(t=>t.remove()),$(t)),$parent=t=>{const e=Array.from($(t)).map(t=>t.parentElement).filter(Boolean),o=[...new Set(e)];return _$ospo(o,_$nlp),o},$find=(t,e)=>{const o=[];$(t).forEach(t=>{o.push(...t.querySelectorAll(e))});const r=[...new Set(o)];return _$ospo(r,_$nlp),r},$show=t=>($(t).forEach(t=>t.style.display=""),$(t)),$hide=t=>($(t).forEach(t=>t.style.display="none"),$(t)),$data=(t,e,o)=>{if(void 0===o)return void 0===e?$(t)[0]?.dataset:$(t)[0]?.dataset[e];return $(t).forEach(t=>t.dataset[e]=o),$(t)},$eonDelegated=(t,e,o,r)=>{return"function"==typeof o?$eon(t,e,o):($(t).forEach(t=>{t.addEventListener(e,t=>{t.target.matches(o)&&r.call(t.target,t)})}),$(t))};_$nlp.$ea=function(t){return $ea(this,t)},_$nlp.$eon=function(t,e,o){return o?$eonDelegated(this,t,e,o):$eon(this,t,e)},_$nlp.$addClass=function(t){return $addClass(this,t)},_$nlp.$removeClass=function(t){return $removeClass(this,t)},_$nlp.$toggleClass=function(t){return $toggleClass(this,t)},_$nlp.$css=function(t){return $css(this,t)},_$nlp.$attr=function(t,e){return $attr(this,t,e)},_$nlp.$html=function(t){return $html(this,t)},_$nlp.$text=function(t){return $text(this,t)},_$nlp.$len=function(){return $len(this)},_$nlp.$val=function(t){return $val(this,t)},_$nlp.$hasClass=function(t){return $hasClass(this,t)},_$nlp.$append=function(t){return $append(this,t)},_$nlp.$prepend=function(t){return $prepend(this,t)},_$nlp.$remove=function(){return $remove(this)},_$nlp.$parent=function(){return $parent(this)},_$nlp.$find=function(t){return $find(this,t)},_$nlp.$show=function(){return $show(this)},_$nlp.$hide=function(){return $hide(this)},_$nlp.$data=function(t,e){return $data(this,t,e)},_$nlp.$eonDelegated=function(t,e,o){return $eonDelegated(this,t,e,o)};
+    </script>
 
-    <script>
-        // ===== VIEW SOURCE MODAL FUNCTIONALITY =====
-        const sourceCode = {
-            'box-demo': {
-                title: '🎯 Interactive Box Demo',
-                sections: {
-                    'HTML': `<div class="box-grid">
-    <div class="box">Box 1</div>
-    <div class="box">Box 2</div>
-    <div class="box">Box 3</div>
-    <div class="box">Box 4</div>
-</div>
-<div class="demo-controls">
-    <button class="btn" id="reset-boxes">Reset All</button>
-    <button class="btn" id="activate-all">Activate All</button>
-    <button class="btn" id="count-active">Count Active</button>
-</div>`,
-                    'JavaScript': `// Box interaction
-$('.box').$eon('click', function() {
-    $(this).$toggleClass('active');
-    updateStats();
-});
-
-// Reset boxes
-$('#reset-boxes').$eon('click', () => {
-    $('.box').$removeClass('active');
-    $('#count-result').$text('All boxes reset!');
-    updateStats();
-});
-
-// Activate all boxes
-$('#activate-all').$eon('click', () => {
-    $('.box').$addClass('active');
-    $('#count-result').$text('All boxes activated!');
-    updateStats();
-});
-
-// Count active boxes
-$('#count-active').$eon('click', () => {
-    const count = $len('.box.active');
-    $('#count-result').$text(\`Active boxes: \${count} out of \${$len('.box')}\`);
-});`
-                }
-            },
-            'chaining-demo': {
-                title: '⛓️ Method Chaining Magic',
-                sections: {
-                    'HTML': `<div class="animation-box" id="chain-demo"></div>
-<button class="btn" id="chain-btn">Trigger Chain Animation</button>`,
-                    'JavaScript': `// Chain demo
-$('#chain-btn').$eon('click', () => {
-    $('#chain-demo')
-        .$css({ transform: 'scale(1)', borderRadius: '10px', background: 'linear-gradient(45deg, #ff6b6b, #ffe66d)' })
-        .$removeClass('spinning');
-    
-    setTimeout(() => {
-        $('#chain-demo')
-            .$addClass('spinning')
-            .$css({ 
-                borderRadius: '50%', 
-                background: 'linear-gradient(45deg, #4ecdc4, #44a3aa)',
-                transform: 'scale(1.2)'
-            })
-            .$attr('data-animated', 'true');
-    }, 100);
-});`
-                }
-            },
-            'event-demo': {
-                title: '🎪 Event Handling',
-                sections: {
-                    'HTML': `<div class="form-demo">
-    <input type="text" id="text-input" placeholder="Type something...">
-    <div class="result" id="text-result">Start typing to see live updates!</div>
-</div>`,
-                    'JavaScript': `// Text input demo
-$('#text-input').$eon('input', function() {
-    const value = this.value;
-    if (value.length > 0) {
-        $('#text-result')
-            .$text(\`You typed: \${value}\`)
-            .$css({ color: '#4ecdc4', fontWeight: 'bold' });
-    } else {
-        $('#text-result')
-            .$text('Start typing to see live updates!')
-            .$css({ color: '#888', fontWeight: 'normal' });
-    }
-});`
-                }
-            },
-            'form-builder': {
-                title: '🏗️ Dynamic Form Builder',
-                sections: {
-                    'HTML': `<div id="form-builder">
-    <div class="form-controls">
-        <button class="btn" data-field="text">Add Text Field</button>
-        <button class="btn" data-field="email">Add Email Field</button>
-        <button class="btn" data-field="select">Add Dropdown</button>
-        <button class="btn" data-field="clear">Clear All</button>
-    </div>
-    <form id="dynamic-form">
-        <p class="placeholder">Your dynamic form will appear here...</p>
-    </form>
-    <div class="form-output">
-        <h4>Live Form Data:</h4>
-        <pre id="form-data">{}</pre>
-    </div>
-</div>`,
-                    'JavaScript': `// Event delegation for form builder buttons
-$('#form-builder').$eonDelegated('click', '[data-field]', function() {
-    const fieldType = $(this).$data('field');
-    const form = $('#dynamic-form');
-    
-    if (fieldType === 'clear') {
-        form.$html('<p class="placeholder">Your dynamic form will appear here...</p>');
-        fieldCounter = 0;
-    } else {
-        // Remove placeholder if it exists
-        form.$find('.placeholder').$remove();
-        
-        fieldCounter++;
-        let fieldHtml = '';
-        
-        switch(fieldType) {
-            case 'text':
-                fieldHtml = \`<div class="form-field">
-                    <label for="field-\${fieldCounter}">Text Field \${fieldCounter}:</label>
-                    <input type="text" id="field-\${fieldCounter}" name="field-\${fieldCounter}" placeholder="Enter text...">
-                </div>\`;
-                break;
-            case 'email':
-                fieldHtml = \`<div class="form-field">
-                    <label for="field-\${fieldCounter}">Email Field \${fieldCounter}:</label>
-                    <input type="email" id="field-\${fieldCounter}" name="field-\${fieldCounter}" placeholder="Enter email...">
-                </div>\`;
-                break;
-            case 'select':
-                fieldHtml = \`<div class="form-field">
-                    <label for="field-\${fieldCounter}">Dropdown \${fieldCounter}:</label>
-                    <select id="field-\${fieldCounter}" name="field-\${fieldCounter}">
-                        <option value="">Choose option...</option>
-                        <option value="option1">Option 1</option>
-                        <option value="option2">Option 2</option>
-                        <option value="option3">Option 3</option>
-                    </select>
-                </div>\`;
-                break;
-        }
-        
-        form.$append(fieldHtml);
-    }
-    
-    updateFormData();
-});
-
-// Event delegation for form inputs
-$('#dynamic-form').$eonDelegated('input', 'input, select', function() {
-    updateFormData();
-});`
-                }
-            },
-            'card-system': {
-                title: '🃏 Interactive Card System',
-                sections: {
-                    'HTML': `<div class="card-demo">
-    <div class="card-controls">
-        <button class="btn" id="add-card">Add Card</button>
-        <button class="btn" id="shuffle-cards">Shuffle</button>
-        <button class="btn" id="filter-starred">Show Starred Only</button>
-        <button class="btn" id="show-all-cards">Show All</button>
-    </div>
-    <div id="card-container" class="card-containers">
-        <!-- Cards will be dynamically rendered here -->
-    </div>
-</div>`,
-                    'JavaScript': `let cardIdCounter = 3;
-let cards = [
-    { id: 1, title: 'Task #1', description: 'Sample task card', starred: false, selected: false },
-    { id: 2, title: 'Task #2', description: 'Important starred task', starred: true, selected: false },
-    { id: 3, title: 'Task #3', description: '✅ Completed task', starred: false, selected: false }
-];
-
-function renderCards() {
-    const cardContainer = $('#card-container');
-    const starredOnly = cardContainer.$data('starredOnly') === 'true';
-    
-    cardContainer.$html('');
-    
-    const filteredCards = starredOnly ? cards.filter(card => card.starred) : cards;
-    
-    filteredCards.forEach(card => {
-        const cardHtml = \`
-            <div class="card \${card.selected ? 'selected' : ''}" data-id="\${card.id}" draggable="true">
-                <div class="card-content">
-                    <h4>☰ \${card.title}</h4>
-                    <p>\${card.description}</p>
-                    <div class="card-meta">
-                        <span class="star \${card.starred ? 'starred' : ''}" data-id="\${card.id}">★</span>
-                        <small>ID: \${card.id}\${card.selected ? ' | Selected' : ''}</small>
-                    </div>
-                </div>
-            </div>
-        \`;
-        cardContainer.$append(cardHtml);
-    });
-    
-    attachDragEvents();
-}
-
-// Event delegation for star toggling
-$('#card-container').$eonDelegated('click', '.star', function(e) {
-    e.stopPropagation();
-    const cardId = parseInt($(this).$data('id'));
-    const card = cards.find(c => c.id === cardId);
-    if (card) {
-        card.starred = !card.starred;
-        renderCards();
-    }
-});`
-                }
-            },
-            'tree-explorer': {
-                title: '🌳 DOM Tree Explorer',
-                sections: {
-                    'HTML': `<div class="tree-demo">
-    <div class="tree-controls">
-        <button class="btn" id="highlight-parents">Highlight Parents</button>
-        <button class="btn" id="highlight-children">Highlight Children</button>
-        <button class="btn" id="hide-some">Hide Some</button>
-        <button class="btn" id="show-hidden">Show Hidden</button>
-        <button class="btn" id="reset-tree">Reset</button>
-    </div>
-    <div class="dom-tree">
-        <div class="tree-node" data-level="1">
-            <span class="node-label">Root Container</span>
-            <div class="tree-node" data-level="2">
-                <span class="node-label">Section A</span>
-                <div class="tree-node" data-level="3">
-                    <span class="node-label">Item 1</span>
-                </div>
-                <div class="tree-node" data-level="3">
-                    <span class="node-label">Item 2</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>`,
-                    'JavaScript': `$('#highlight-parents').$eon('click', function() {
-    // Reset all highlighting
-    $('.tree-node').$removeClass('highlighted').$removeClass('parent-highlighted').$removeClass('child-highlighted');
-    
-    // Highlight level 2 nodes (Section A, Section B) as they are parents
-    $('.tree-node[data-level="2"]').$ea((i, node) => {
-        $(node).$addClass('parent-highlighted');
-    });
-    
-    // Highlight level 1 (Root Container) as the ultimate parent
-    $('.tree-node[data-level="1"]').$addClass('highlighted');
-});
-
-$('#highlight-children').$eon('click', function() {
-    // Reset all highlighting
-    $('.tree-node').$removeClass('highlighted').$removeClass('parent-highlighted').$removeClass('child-highlighted');
-    
-    // Highlight level 3 nodes (Item 1, 2, 3, Special Item) as they are children
-    $('.tree-node[data-level="3"]').$ea((i, node) => {
-        $(node).$addClass('child-highlighted');
-    });
-    
-    // Highlight level 2 as the intermediate nodes
-    $('.tree-node[data-level="2"]').$addClass('highlighted');
-});
-
-// Interactive node clicking
-$('.tree-demo').$eonDelegated('click', '.node-label', function() {
-    const node = $(this).$parent();
-    const level = node.$data('level');
-    
-    // Toggle highlighting for clicked node and show relationships
-    $('.tree-node').$removeClass('highlighted').$removeClass('parent-highlighted').$removeClass('child-highlighted');
-    node.$addClass('highlighted');
-    
-    // Highlight parents
-    node.$parent().$addClass('parent-highlighted');
-    
-    // Highlight children
-    node.$find('.tree-node').$addClass('child-highlighted');
-});`
-                }
-            },
-            'chat-simulator': {
-                title: '💬 Real-time Chat Simulator',
-                sections: {
-                    'HTML': `<div class="chat-demo">
-    <div class="chat-container">
-        <div class="chat-messages" id="chat-messages">
-            <div class="message system">Welcome to the thparq chat demo!</div>
-        </div>
-        <div class="chat-input-area">
-            <input type="text" id="message-input" class="chat-input" placeholder="Type your message..." maxlength="100">
-            <button class="btn" id="send-message">Send</button>
-        </div>
-        <div class="chat-stats" id="chat-stats">
-            Messages: <span id="message-count">1</span> | 
-            Characters: <span id="char-count">0</span>/100
-        </div>
-    </div>
-</div>`,
-                    'JavaScript': `let messageCount = 0;
-const botResponses = [
-    "That's interesting! 🤔",
-    "Tell me more!",
-    "I see what you mean 👍",
-    "Thanks for sharing!",
-    "That sounds great! 😊",
-    "Cool story! 📚",
-    "Awesome! ⭐"
-];
-
-$('#send-message').$eon('click', function() {
-    const input = $('#message-input');
-    const message = input.$val();
-    
-    if (message && message.trim()) {
-        addMessage('user', message.trim());
-        input.$val('');
-        
-        // Simulate bot response
-        setTimeout(() => {
-            const response = botResponses[Math.floor(Math.random() * botResponses.length)];
-            addMessage('bot', response);
-        }, 500 + Math.random() * 1000);
-    }
-});
-
-function addMessage(type, text) {
-    messageCount++;
-    const messageHtml = \`<div class="message \${type}">\${text}</div>\`;
-    
-    $('#chat-messages').$append(messageHtml);
-    
-    // Scroll to bottom
-    const chatWindow = $('#chat-messages')[0];
-    chatWindow.scrollTop = chatWindow.scrollHeight;
-    
-    updateChatStats();
-}
-
-// Enter key support for chat
-$('#message-input').$eon('keypress', function(e) {
-    if (e.key === 'Enter') {
-        $('#send-message')[0].click();
-    }
-});`
-                }
-            },
-            'code-playground': {
-                title: '🚀 Live Code Playground',
-                sections: {
-                    'HTML': `<div class="playground">
-    <div class="playground-editor">
-        <h4>Code Editor:</h4>
-        <textarea id="code-editor" rows="6" placeholder="// Try some thparq code!">$('.demo-target')
-  .$css({background: 'lightblue', padding: '1rem'})
-  .$html('<strong>Dynamic Content!</strong>')
-  .$addClass('animated');</textarea>
-        <div class="playground-controls">
-            <button class="btn" id="run-code">▶️ Run Code</button>
-            <button class="btn" id="reset-playground">🔄 Reset</button>
-            <select id="code-examples">
-                <option value="">Choose Example...</option>
-                <option value="basic">Dynamic Styling</option>
-                <option value="manipulation">Form Manipulation</option>
-                <option value="chaining">Method Chaining</option>
-                <option value="events">Event Handling</option>
-            </select>
-        </div>
-    </div>
-    <div class="playground-output">
-        <h4>Live Output:</h4>
-        <div class="demo-targets">
-            <div class="demo-target">Target Element 1</div>
-            <div class="demo-target">Target Element 2</div>
-            <div class="demo-target">Target Element 3</div>
-        </div>
-        <div id="console-output"></div>
-    </div>
-</div>`,
-                    'JavaScript': `const playgroundExamples = {
-    'basic': \`$('.demo-target')
-  .$css({background: 'lightblue', padding: '1rem'})
-  .$html('<strong>Dynamic Content!</strong>')
-  .$addClass('animated');\`,
-    'chaining': \`$('.demo-target')
-  .$text('Chaining Demo')
-  .$css({color: 'purple', fontSize: '1.2rem'})
-  .$addClass('highlight')
-  .$data('demo', 'true');\`,
-    'events': \`$('.demo-target').$ea((i, el) => {
-  $(el).$css({background: \\\`hsl(\\\${i * 60}, 70%, 80%)\\\`})
-       .$text(\\\`Element \\\${i + 1}\\\`);
-});\`,
-    'manipulation': \`$('.demo-target')
-  .$append('<div>Appended content</div>')
-  .$prepend('<div>Prepended content</div>')
-  .$show();\`
-};
-
-$('#run-code').$eon('click', function() {
-    const code = $('#code-editor').$val();
-    
-    try {
-        // Reset target elements
-        resetPlayground();
-        
-        // Execute the code
-        eval(code);
-        
-        $('#playground-output').$css({color: '#28a745'})
-            .$html('<strong>✅ Code executed successfully!</strong><br>Check the target elements below.');
-    } catch (error) {
-        $('#playground-output').$css({color: '#dc3545'})
-            .$html(\`<strong>❌ Error:</strong><br>\${error.message}\`);
-    }
-});
-
-function resetPlayground() {
-    $('.demo-target').$ea((i, el) => {
-        $(el).$removeClass()
-             .$css({})
-             .$html('')
-             .$text(\`Target Element \${i + 1}\`)
-             .$show();
-        el.removeAttribute('style');
-        el.className = 'target-element demo-target';
-    });
-}`
-                }
-            }
-        };
-
+    <!-- Modal and shared functions -->
+    <script id="modal-functions">
         // Modal functionality
-        $('.view-source-btn').$eon('click', function() {
-            const demoType = $(this).$data('demo');
-            const demo = sourceCode[demoType];
+        function showSource(demoId) {
+            const modal = document.getElementById('source-modal');
+            const modalBody = document.getElementById('modal-body');
             
-            if (demo) {
-                showSourceModal(demo.title, demo.sections);
+            // Get the demo's HTML and JavaScript
+            const demoElement = document.getElementById(demoId);
+            const demoScript = document.getElementById(demoId + '-script');
+            
+            if (!demoElement || !demoScript) {
+                console.error('Demo element or script not found for:', demoId);
+                return;
             }
-        });
-
-        function showSourceModal(title, sections) {
-            $('#modal-title').$text(title);
-            const modalBody = $('#modal-body');
-            modalBody.$html('');
             
-            Object.keys(sections).forEach(sectionName => {
-                const sectionHtml = `
-                    <div class="source-section">
-                        <h4>${sectionName}:</h4>
-                        <pre class="source-code"><code>${escapeHtml(sections[sectionName])}</code></pre>
-                    </div>
-                `;
-                modalBody.$append(sectionHtml);
-            });
+            // Get the HTML content (excluding the view source button)
+            const demoClone = demoElement.cloneNode(true);
+            const viewSourceBtn = demoClone.querySelector('.view-source-btn');
+            if (viewSourceBtn) {
+                viewSourceBtn.remove();
+            }
             
-            $('#source-modal').$addClass('active');
+            const htmlContent = demoClone.innerHTML;
+            const jsContent = demoScript.innerHTML;
+            
+            // Create the modal content
+            modalBody.innerHTML = `
+                <div class="source-section">
+                    <div class="source-header">HTML Structure</div>
+                    <pre class="source-code">${escapeHtml(htmlContent)}</pre>
+                </div>
+                <div class="source-section">
+                    <div class="source-header">JavaScript Code</div>
+                    <pre class="source-code">${escapeHtml(jsContent)}</pre>
+                </div>
+            `;
+            
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
         }
-
+        
+        function closeModal() {
+            const modal = document.getElementById('source-modal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
         function escapeHtml(text) {
-            const map = {
-                '&': '&amp;',
-                '<': '&lt;',
-                '>': '&gt;',
-                '"': '&quot;',
-                "'": '&#039;'
-            };
-            return text.replace(/[&<>"']/g, m => map[m]);
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
         }
-
-        // Close modal functionality
-        $('#close-modal').$eon('click', () => {
-            $('#source-modal').$removeClass('active');
-        });
-
-        $('#source-modal').$eon('click', function(e) {
-            if (e.target === this) {
-                $(this).$removeClass('active');
+        
+        // Close modal when clicking outside
+        document.addEventListener('click', function(e) {
+            const modal = document.getElementById('source-modal');
+            if (e.target === modal) {
+                closeModal();
             }
         });
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
 
-        // ===== DEMO FUNCTIONALITY =====
+    <!-- Initialize particles animation -->
+    <script id="particles-script">
         // Initialize particles animation
         $('.particle').$ea((i, el) => {
             el.style.animationDelay = `${i * 0.5}s`;
         });
+    </script>
 
+    <!-- Interactive Elements Demo -->
+    <script id="interactive-demo-script">
         // Box interaction
         $('.box').$eon('click', function() {
             $(this).$toggleClass('active');
@@ -1651,6 +1252,23 @@ function resetPlayground() {
             $('#count-result').$text(`Active boxes: ${count} out of ${$len('.box')}`);
         });
 
+        // Update stats function
+        function updateStats() {
+            $('#total-boxes').$text($len('.box'));
+            $('#active-boxes').$text($len('.box.active'));
+            $('#faq-count').$text($len('.faq-item'));
+            $('#btn-count').$text($len('.btn'));
+        }
+
+        // Update stats button
+        $('#update-stats').$eon('click', updateStats);
+
+        // Initial stats update
+        updateStats();
+    </script>
+
+    <!-- Method Chaining Demo -->
+    <script id="chaining-demo-script">
         // Chain demo
         $('#chain-btn').$eon('click', () => {
             $('#chain-demo')
@@ -1668,7 +1286,10 @@ function resetPlayground() {
                     .$attr('data-animated', 'true');
             }, 100);
         });
+    </script>
 
+    <!-- Event Handling Demo -->
+    <script id="event-demo-script">
         // Text input demo
         $('#text-input').$eon('input', function() {
             const value = this.value;
@@ -1682,73 +1303,10 @@ function resetPlayground() {
                     .$css({ color: '#888', fontWeight: 'normal' });
             }
         });
+    </script>
 
-        // Style buttons
-        $('.style-btn').$eon('click', function() {
-            const style = $(this).$attr('data-style');
-            const box = $('#style-box');
-            
-            switch(style) {
-                case 'rainbow':
-                    box.$css({
-                        background: 'linear-gradient(45deg, #ff6b6b, #4ecdc4, #ffe66d, #ff6b6b)',
-                        backgroundSize: '400% 400%',
-                        animation: 'gradient 3s ease infinite'
-                    });
-                    break;
-                case 'circle':
-                    box.$css({
-                        borderRadius: '50%',
-                        transform: 'rotate(360deg)'
-                    });
-                    break;
-                case 'big':
-                    box.$css({
-                        transform: 'scale(1.5)',
-                        boxShadow: '0 10px 30px rgba(78, 205, 196, 0.5)'
-                    });
-                    break;
-                case 'reset':
-                    box.$css({
-                        background: '#333',
-                        borderRadius: '10px',
-                        transform: 'scale(1)',
-                        boxShadow: 'none',
-                        animation: 'none'
-                    });
-                    break;
-            }
-        });
-
-        // FAQ accordion
-        $('.question').$eon('click', function() {
-            $(this).$toggleClass('open');
-            $(this.nextElementSibling).$toggleClass('hidden');
-        });
-
-        // Update stats function
-        function updateStats() {
-            $('#total-boxes').$text($len('.box'));
-            $('#active-boxes').$text($len('.box.active'));
-            $('#faq-count').$text($len('.faq-item'));
-            $('#btn-count').$text($len('.btn'));
-        }
-
-        // Update stats button
-        $('#update-stats').$eon('click', updateStats);
-
-        // Initial stats update
-        updateStats();
-
-        // Add some interactive hover effects
-        $('.btn').$eon('mouseenter', function() {
-            $(this).$css({ transform: 'translateY(-2px)' });
-        }).$eon('mouseleave', function() {
-            $(this).$css({ transform: 'translateY(0)' });
-        });
-
-        // ===== NEW DEMO SECTION FUNCTIONALITY =====
-
+    <!-- Dynamic Form Builder Demo -->
+    <script id="form-builder-demo-script">
         // Dynamic Form Builder Demo
         let fieldCounter = 0;
         
@@ -1820,7 +1378,10 @@ function resetPlayground() {
             });
             $('#form-data').$text(JSON.stringify(formData, null, 2));
         }
+    </script>
 
+    <!-- Interactive Card System Demo -->
+    <script id="card-system-demo-script">
         // Interactive Card System Demo
         let cardIdCounter = 3;
         let cards = [
@@ -1971,7 +1532,10 @@ function resetPlayground() {
                 });
             });
         }
+    </script>
 
+    <!-- DOM Tree Explorer Demo -->
+    <script id="tree-explorer-demo-script">
         // DOM Tree Explorer Demo
         $('#highlight-parents').$eon('click', function() {
             // Reset all highlighting
@@ -2028,7 +1592,10 @@ function resetPlayground() {
             // Highlight children
             node.$find('.tree-node').$addClass('child-highlighted');
         });
+    </script>
 
+    <!-- Real-time Chat Simulator Demo -->
+    <script id="chat-simulator-demo-script">
         // Real-time Chat Simulator Demo
         let messageCount = 0;
         const botResponses = [
@@ -2105,7 +1672,10 @@ function resetPlayground() {
             const totalChars = $('#chat-messages').$text().length;
             $('#chat-stats').$text(`Messages: ${messageCount} | Characters: ${totalChars}/100`);
         }
+    </script>
 
+    <!-- Live Code Playground Demo -->
+    <script id="code-playground-demo-script">
         // Live Code Playground Demo
         const playgroundExamples = {
             'basic': `$('.demo-target')
@@ -2172,7 +1742,10 @@ function resetPlayground() {
         
         // Initialize playground
         resetPlayground();
-        
+    </script>
+
+    <!-- Demo Initialization -->
+    <script id="demo-initialization">
         // Initialize form data
         updateFormData();
         
@@ -2182,7 +1755,10 @@ function resetPlayground() {
         
         // Initialize chat stats
         updateChatStats();
+    </script>
 
+    <!-- Easter Egg -->
+    <script id="easter-egg">
         // Easter egg: Konami code
         let konamiCode = [];
         const konamiPattern = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
