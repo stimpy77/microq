@@ -10,34 +10,34 @@ const $ = selector => document.querySelectorAll(selector);
 const $_wrap = p => (typeof p === 'string' ? $(p) : p);
 
 // Loop through elements (with chaining support)
-const $ea = (p, fn) => ($_wrap(p).forEach(fn), p); // Chainable
+const $ea = (p, fn) => ([].concat($_wrap(p)).filter(t => t).forEach(fn), p); // Chainable
 
 // Event listener (with chaining support)
-const $eon = (p, e, fn) => ($_wrap(p).forEach(el => el.addEventListener(e, fn)), p);
+const $eon = (p, e, fn) => ([].concat($_wrap(p)).filter(t => t && t.addEventListener).forEach(el => el.addEventListener(e, fn)), p);
 
 // Add class (with chaining support)
-const $addClass = (p, c) => ($_wrap(p).forEach(el => el.classList.add(c)), p);
+const $addClass = (p, c) => ([].concat($_wrap(p)).filter(t => t && t.classList).forEach(el => el.classList.add(c)), p);
 
 // Remove class (with chaining support)
-const $removeClass = (p, c) => ($_wrap(p).forEach(el => el.classList.remove(c)), p);
+const $removeClass = (p, c) => ([].concat($_wrap(p)).filter(t => t && t.classList).forEach(el => el.classList.remove(c)), p);
 
 // Toggle class (with chaining support)
-const $toggleClass = (p, c) => ($_wrap(p).forEach(el => el.classList.toggle(c)), p);
+const $toggleClass = (p, c) => ([].concat($_wrap(p)).filter(t => t && t.classList).forEach(el => el.classList.toggle(c)), p);
 
 // Apply CSS styles (with chaining support)
-const $css = (p, s) => ($_wrap(p).forEach(el => Object.assign(el.style, s)), p);
+const $css = (p, s) => ([].concat($_wrap(p)).filter(t => t && t.style).forEach(el => Object.assign(el.style, s)), p);
 
 // Get/set attributes (with chaining support)
 const $attr = (p, n, v) => {
   const elems = $_wrap(p);
-  return v === undefined ? elems[0]?.getAttribute(n) : (elems.forEach(el => el.setAttribute(n, v)), p); // Get/Set
+  return v === undefined ? elems[0]?.getAttribute(n) : ([].concat(elems).filter(t => t && t.setAttribute).forEach(el => el.setAttribute(n, v)), p); // Get/Set
 };
 
 // Get/set innerHTML (with chaining support)
-const $html = (p, h) => (h === undefined ? $_wrap(p)[0]?.innerHTML : ($_wrap(p).forEach(el => el.innerHTML = h), p));
+const $html = (p, h) => (h === undefined ? $_wrap(p)[0]?.innerHTML : ([].concat($_wrap(p)).filter(t => t).forEach(el => el.innerHTML = h), p));
 
 // Get/set textContent (with chaining support)
-const $text = (p, t) => (t === undefined ? $_wrap(p)[0]?.textContent : ($_wrap(p).forEach(el => el.textContent = t), p));
+const $text = (p, t) => (t === undefined ? $_wrap(p)[0]?.textContent : ([].concat($_wrap(p)).filter(t => t).forEach(el => el.textContent = t), p));
 
 // Fetch raw text (with chaining support)
 const $get = (url) => fetch(url).then(res => res.text());
