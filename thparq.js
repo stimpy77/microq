@@ -24,7 +24,7 @@ const $ = s => {
 };
 
 // Loop through elements (with chaining support)
-const $ea = (p, fn) => ($(p).forEach(fn), $(p));
+const $ea = (p, fn) => ($(p).forEach((el, i) => fn(i, el)), $(p));
 const $eon = (p, e, fn) => ($(p).forEach(el => el.addEventListener(e, fn)), $(p));
 const $addClass = (p, c) => ($(p).forEach(el => el.classList.add(c)), $(p));
 const $removeClass = (p, c) => ($(p).forEach(el => el.classList.remove(c)), $(p));
