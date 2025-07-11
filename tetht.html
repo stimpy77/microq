@@ -167,6 +167,34 @@
             <h3 class="question">How does it work?</h3>
             <p class="answer hidden">It provides jQuery-like syntax for vanilla JS!</p>
         </div>
+        
+        <br><br>
+        
+        <!-- Form elements for testing val() -->
+        <form id="testForm">
+            <input type="text" id="testInput" value="initial" placeholder="Test input">
+            <input type="password" id="testPassword" value="secret">
+            <textarea id="testTextarea">Initial content</textarea>
+            <select id="testSelect">
+                <option value="opt1">Option 1</option>
+                <option value="opt2" selected>Option 2</option>
+            </select>
+        </form>
+        
+        <!-- Container for testing append/prepend -->
+        <div id="testContainer" data-test="container">
+            <p class="existing">Existing content</p>
+        </div>
+        
+        <!-- Elements for testing parent/find -->
+        <div class="parent-test">
+            <div class="child-test">Child 1</div>
+            <div class="child-test">Child 2</div>
+        </div>
+        
+        <!-- Elements for testing show/hide -->
+        <div class="visibility-test" style="display: none;">Hidden element</div>
+        <div class="visibility-test">Visible element</div>
     </div>
 
     <!-- Test Results -->
@@ -177,7 +205,7 @@
 
     <script>
         // thparq injection, see https://github.com/stimpy77/thparq/
-        const _$ogpo=Object.getPrototypeOf;const _$ospo=Object.setPrototypeOf;const _$nlp=NodeList.prototype;const $=t=>{if("string"==typeof t){let e=document.querySelectorAll(t);return _$ogpo(e).$eon||_$ospo(e,_$nlp),e}if(t instanceof Node){let o=[t];return _$ogpo(o).$eon||_$ospo(o,_$nlp),o}if(t instanceof NodeList)return _$ogpo(t).$eon||_$ospo(t,_$nlp),t;let r=[];return _$ospo(r,_$nlp),r},$ea=(t,e)=>($(t).forEach(e),$(t)),$eon=(t,e,o)=>($(t).forEach(t=>t.addEventListener(e,o)),$(t)),$addClass=(t,e)=>($(t).forEach(t=>t.classList.add(e)),$(t)),$removeClass=(t,e)=>($(t).forEach(t=>t.classList.remove(e)),$(t)),$toggleClass=(t,e)=>($(t).forEach(t=>t.classList.toggle(e)),$(t)),$css=(t,e)=>($(t).forEach(t=>Object.assign(t.style,e)),$(t)),$attr=(t,e,o)=>void 0===o?$(t)[0]?.getAttribute(e):($(t).forEach(t=>t.setAttribute(e,o)),$(t)),$html=(t,e)=>void 0===e?$(t)[0]?.innerHTML:($(t).forEach(t=>t.innerHTML=e),$(t)),$text=(t,e)=>void 0===e?$(t)[0]?.textContent:($(t).forEach(t=>t.textContent=e),$(t)),$get=t=>fetch(t).then(t=>t.text()),$getJSON=t=>fetch(t).then(t=>t.json()),$1st=t=>$(t)[0]||null,$1ast=t=>$(t)[$(t).length-1]||null,$len=t=>$(t).length;_$nlp.$ea=function(t){return $ea(this,t)},_$nlp.$eon=function(t,e){return $eon(this,t,e)},_$nlp.$addClass=function(t){return $addClass(this,t)},_$nlp.$removeClass=function(t){return $removeClass(this,t)},_$nlp.$toggleClass=function(t){return $toggleClass(this,t)},_$nlp.$css=function(t){return $css(this,t)},_$nlp.$attr=function(t,e){return $attr(this,t,e)},_$nlp.$html=function(t){return $html(this,t)},_$nlp.$text=function(t){return $text(this,t)},_$nlp.$len=function(){return $len(this)};
+        const _$ogpo=Object.getPrototypeOf;const _$ospo=Object.setPrototypeOf;const _$nlp=NodeList.prototype;const $=t=>{if("string"==typeof t){let e=document.querySelectorAll(t);return _$ogpo(e).$eon||_$ospo(e,_$nlp),e}if(t instanceof Node){let o=[t];return _$ogpo(o).$eon||_$ospo(o,_$nlp),o}if(t instanceof NodeList)return _$ogpo(t).$eon||_$ospo(t,_$nlp),t;let r=[];return _$ospo(r,_$nlp),r},$ea=(t,e)=>($(t).forEach((el,i)=>e(i,el)),$(t)),$eon=(t,e,o)=>($(t).forEach(t=>t.addEventListener(e,o)),$(t)),$addClass=(t,e)=>($(t).forEach(t=>t.classList.add(e)),$(t)),$removeClass=(t,e)=>($(t).forEach(t=>t.classList.remove(e)),$(t)),$toggleClass=(t,e)=>($(t).forEach(t=>t.classList.toggle(e)),$(t)),$css=(t,e)=>($(t).forEach(t=>Object.assign(t.style,e)),$(t)),$attr=(t,e,o)=>void 0===o?$(t)[0]?.getAttribute(e):($(t).forEach(t=>t.setAttribute(e,o)),$(t)),$html=(t,e)=>void 0===e?$(t)[0]?.innerHTML:($(t).forEach(t=>t.innerHTML=e),$(t)),$text=(t,e)=>void 0===e?$(t)[0]?.textContent:($(t).forEach(t=>t.textContent=e),$(t)),$get=t=>fetch(t).then(t=>t.text()),$getJSON=t=>fetch(t).then(t=>t.json()),$1st=t=>$(t)[0]||null,$1ast=t=>$(t)[$(t).length-1]||null,$len=t=>$(t).length,$val=(t,e)=>void 0===e?$(t)[0]?.value:($(t).forEach(t=>t.value=e),$(t)),$hasClass=(t,e)=>$(t)[0]?.classList.contains(e)||!1,$append=(t,e)=>($(t).forEach(t=>{"string"==typeof e?t.insertAdjacentHTML("beforeend",e):e instanceof Node&&t.appendChild(e)}),$(t)),$prepend=(t,e)=>($(t).forEach(t=>{"string"==typeof e?t.insertAdjacentHTML("afterbegin",e):e instanceof Node&&t.insertBefore(e,t.firstChild)}),$(t)),$remove=t=>($(t).forEach(t=>t.remove()),$(t)),$parent=t=>{const e=Array.from($(t)).map(t=>t.parentElement).filter(Boolean),o=[...new Set(e)];return _$ospo(o,_$nlp),o},$find=(t,e)=>{const o=[];$(t).forEach(t=>{o.push(...t.querySelectorAll(e))});const r=[...new Set(o)];return _$ospo(r,_$nlp),r},$show=t=>($(t).forEach(t=>t.style.display=""),$(t)),$hide=t=>($(t).forEach(t=>t.style.display="none"),$(t)),$data=(t,e,o)=>{if(void 0===o)return void 0===e?$(t)[0]?.dataset:$(t)[0]?.dataset[e];return $(t).forEach(t=>t.dataset[e]=o),$(t)},$eonDelegated=(t,e,o,r)=>{return"function"==typeof o?$eon(t,e,o):($(t).forEach(t=>{t.addEventListener(e,t=>{t.target.matches(o)&&r.call(t.target,t)})}),$(t))};_$nlp.$ea=function(t){return $ea(this,t)},_$nlp.$eon=function(t,e,o){return o?$eonDelegated(this,t,e,o):$eon(this,t,e)},_$nlp.$addClass=function(t){return $addClass(this,t)},_$nlp.$removeClass=function(t){return $removeClass(this,t)},_$nlp.$toggleClass=function(t){return $toggleClass(this,t)},_$nlp.$css=function(t){return $css(this,t)},_$nlp.$attr=function(t,e){return $attr(this,t,e)},_$nlp.$html=function(t){return $html(this,t)},_$nlp.$text=function(t){return $text(this,t)},_$nlp.$len=function(){return $len(this)},_$nlp.$val=function(t){return $val(this,t)},_$nlp.$hasClass=function(t){return $hasClass(this,t)},_$nlp.$append=function(t){return $append(this,t)},_$nlp.$prepend=function(t){return $prepend(this,t)},_$nlp.$remove=function(){return $remove(this)},_$nlp.$parent=function(){return $parent(this)},_$nlp.$find=function(t){return $find(this,t)},_$nlp.$show=function(){return $show(this)},_$nlp.$hide=function(){return $hide(this)},_$nlp.$data=function(t,e){return $data(this,t,e)};
 
 
         // Test runner
@@ -216,7 +244,7 @@
             // NEW TEST: $ea() with direct selector string
             let eaDirectTest = true;
             const originalTexts = Array.from($('.box')).map(el => el.textContent); // Save original state
-            $ea('.box', (el, i) => {
+            $ea('.box', (i, el) => {
                 el.dataset.test = `Box ${i+1}`;
                 if (el.dataset.test !== `Box ${i+1}`) eaDirectTest = false;
             });
@@ -323,7 +351,7 @@
                 $('.box:nth-child(3)')
                     .$addClass('ready')
                     .$css({ color: 'lime' })
-                    .$ea((el, i) => (el.dataset.index = i))
+                    .$ea((i, el) => (el.dataset.index = i))
                     .$html('<strong>Updated</strong>');
                 
                 const testBox = document.querySelector('.box:nth-child(3)');
@@ -378,8 +406,150 @@
                 })
                 .catch(e => {
                     logTest('$getJSON() - Fetch JSON', false, 'Failed to fetch JSON: ' + e.message);
-                });
+                 });
 
+            // === NEW METHODS TESTING ===
+            
+            // Test $val() - Form input values
+            const inputVal = $val('#testInput');
+            logTest('$val() - Get input value', inputVal === 'initial', `Got: ${inputVal}`);
+            
+            $val('#testInput', 'changed');
+            const changedVal = $val('#testInput');
+            logTest('$val() - Set input value', changedVal === 'changed', `Set to: ${changedVal}`);
+            
+            // Test $val() with chaining
+            const chainedVal = $('#testPassword').$val('newSecret').$val();
+            logTest('$val() - Chaining', chainedVal === 'newSecret', 'Chaining works');
+            
+            // Test $hasClass() - Check for class
+            const hasHidden = $hasClass('.box.hidden', 'hidden');
+            const hasActiveNew = $hasClass('.box', 'active');
+            logTest('$hasClass() - Has class', hasHidden && !hasActiveNew, 'Class detection works');
+            
+            // Test $hasClass() with chaining
+            const chainingHasClass = $('.box').$hasClass('box');
+            logTest('$hasClass() - Chaining', chainingHasClass, 'Chaining works');
+            
+            // Test $append() - Add content
+            const originalContent = $('#testContainer').innerHTML;
+            $append('#testContainer', '<span class="appended">Appended</span>');
+            const hasAppended = document.querySelector('#testContainer .appended') !== null;
+            logTest('$append() - Add content', hasAppended, 'Content appended');
+            
+            // Test $append() with chaining
+            $('#testContainer').$append('<span class="appended2">Appended 2</span>');
+            const hasAppended2 = document.querySelector('#testContainer .appended2') !== null;
+            logTest('$append() - Chaining', hasAppended2, 'Chaining works');
+            
+            // Test $prepend() - Add content at beginning
+            $prepend('#testContainer', '<span class="prepended">Prepended</span>');
+            const hasPrepended = document.querySelector('#testContainer .prepended') !== null;
+            const isFirst = document.querySelector('#testContainer').firstElementChild.classList.contains('prepended');
+            logTest('$prepend() - Add content first', hasPrepended && isFirst, 'Content prepended first');
+            
+            // Test $prepend() with chaining
+            $('#testContainer').$prepend('<span class="prepended2">Prepended 2</span>');
+            const hasPrepended2 = document.querySelector('#testContainer .prepended2') !== null;
+            logTest('$prepend() - Chaining', hasPrepended2, 'Chaining works');
+            
+            // Test $remove() - Remove elements
+            const removeCount = $('.appended, .appended2, .prepended, .prepended2').length;
+            $remove('.appended, .appended2, .prepended, .prepended2');
+            const removedCount = $('.appended, .appended2, .prepended, .prepended2').length;
+            logTest('$remove() - Remove elements', removeCount > 0 && removedCount === 0, 'Elements removed');
+            
+            // Test $remove() with chaining
+            $append('#testContainer', '<span class="to-remove">Remove me</span>');
+            $('#testContainer').$find('.to-remove').$remove();
+            const stillThere = document.querySelector('#testContainer .to-remove') !== null;
+            logTest('$remove() - Chaining', !stillThere, 'Chaining works');
+            
+            // Test $parent() - Get parent elements
+            const parents = $parent('.child-test');
+            logTest('$parent() - Get parents', parents.length === 1 && parents[0].classList.contains('parent-test'), 'Parent found');
+            
+            // Test $parent() with chaining
+            $('.child-test').$parent().$addClass('parent-marked');
+            const parentMarked = document.querySelector('.parent-test.parent-marked') !== null;
+            logTest('$parent() - Chaining', parentMarked, 'Chaining works');
+            $('.parent-test').$removeClass('parent-marked'); // cleanup
+            
+            // Test $find() - Find child elements
+            const children = $find('.parent-test', '.child-test');
+            logTest('$find() - Find children', children.length === 2, `Found ${children.length} children`);
+            
+            // Test $find() with chaining
+            $('.parent-test').$find('.child-test').$addClass('child-marked');
+            const childrenMarked = document.querySelectorAll('.child-test.child-marked').length;
+            logTest('$find() - Chaining', childrenMarked === 2, 'Chaining works');
+            $('.child-test').$removeClass('child-marked'); // cleanup
+            
+            // Test $show() - Show elements
+            const hiddenEl = document.querySelector('.visibility-test');
+            const wasHiddenNew = hiddenEl.style.display === 'none';
+            $show('.visibility-test');
+            const isVisible = hiddenEl.style.display === '';
+            logTest('$show() - Show elements', wasHiddenNew && isVisible, 'Element shown');
+            
+            // Test $show() with chaining
+            $('.visibility-test').$hide().$show();
+            const isVisibleChained = hiddenEl.style.display === '';
+            logTest('$show() - Chaining', isVisibleChained, 'Chaining works');
+            
+            // Test $hide() - Hide elements
+            $hide('.visibility-test');
+            const isHidden = hiddenEl.style.display === 'none';
+            logTest('$hide() - Hide elements', isHidden, 'Element hidden');
+            
+            // Test $hide() with chaining
+            $('.visibility-test').$show().$hide();
+            const isHiddenChained = hiddenEl.style.display === 'none';
+            logTest('$hide() - Chaining', isHiddenChained, 'Chaining works');
+            
+            // Test $data() - Data attributes
+            const dataVal = $data('#testContainer', 'test');
+            logTest('$data() - Get data', dataVal === 'container', `Got: ${dataVal}`);
+            
+            $data('#testContainer', 'newProp', 'newValue');
+            const newDataVal = $data('#testContainer', 'newProp');
+            logTest('$data() - Set data', newDataVal === 'newValue', `Set: ${newDataVal}`);
+            
+            // Test $data() with chaining
+            const chainedData = $('#testContainer').$data('chainTest', 'chainValue').$data('chainTest');
+            logTest('$data() - Chaining', chainedData === 'chainValue', 'Chaining works');
+            
+            // Test $data() - Get all data
+            const allData = $data('#testContainer');
+            logTest('$data() - Get all data', allData && allData.test === 'container', 'All data retrieved');
+            
+            // Test $eon() - Event delegation
+            let delegationWorked = false;
+            $('#testContainer').$eon('click', '.delegated-item', function() {
+                delegationWorked = true;
+                this.style.background = 'lightgreen';
+            });
+            
+            // Add element dynamically to test delegation
+            $('#testContainer').$append('<div class="delegated-item">Click me for delegation</div>');
+            document.querySelector('.delegated-item').click();
+            logTest('$eon() - Event delegation', delegationWorked, 'Event delegation works');
+            
+            // Test enhanced chaining with new methods
+            let chainTest = false;
+            try {
+                $('.box')
+                    .$data('chainTest', 'success')
+                    .$addClass('chain-tested')
+                    .$parent()
+                    .$find('.box')
+                    .$removeClass('chain-tested');
+                chainTest = true;
+            } catch (e) {
+                console.error('Chain test failed:', e);
+            }
+            logTest('Enhanced chaining', chainTest, 'All new methods chain properly');
+            
         } catch (e) {
             logTest('Critical Error', false, e.message);
         }

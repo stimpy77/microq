@@ -49,9 +49,90 @@ const $1ast = selector => $(selector)[$(selector).length - 1] || null; // Last m
 // Get the length of the NodeList (with chaining support)
 const $len = p => $(p).length;
 
+// Form input values (with chaining support)
+const $val = (p, v) => v === undefined ? $(p)[0]?.value : ($(p).forEach(el => el.value = v), $(p));
+
+// Check for class (returns boolean)
+const $hasClass = (p, c) => $(p)[0]?.classList.contains(c) || false;
+
+// Append content (with chaining support)
+const $append = (p, content) => ($(p).forEach(el => {
+  if (typeof content === 'string') {
+    el.insertAdjacentHTML('beforeend', content);
+  } else if (content instanceof Node) {
+    el.appendChild(content);
+  }
+}), $(p));
+
+// Prepend content (with chaining support)
+const $prepend = (p, content) => ($(p).forEach(el => {
+  if (typeof content === 'string') {
+    el.insertAdjacentHTML('afterbegin', content);
+  } else if (content instanceof Node) {
+    el.insertBefore(content, el.firstChild);
+  }
+}), $(p));
+
+// Remove elements (with chaining support)
+const $remove = (p) => ($(p).forEach(el => el.remove()), $(p));
+
+// Get parent element (returns new NodeList)
+const $parent = (p) => {
+  const parents = Array.from($(p)).map(el => el.parentElement).filter(Boolean);
+  const result = [...new Set(parents)];
+  Object.setPrototypeOf(result, NodeList.prototype);
+  return result;
+};
+
+// Find child elements (returns new NodeList)
+const $find = (p, selector) => {
+  const found = [];
+  $(p).forEach(el => {
+    found.push(...el.querySelectorAll(selector));
+  });
+  const result = [...new Set(found)];
+  Object.setPrototypeOf(result, NodeList.prototype);
+  return result;
+};
+
+// Show elements (with chaining support)
+const $show = (p) => ($(p).forEach(el => el.style.display = ''), $(p));
+
+// Hide elements (with chaining support)
+const $hide = (p) => ($(p).forEach(el => el.style.display = 'none'), $(p));
+
+// Data attributes (with chaining support)
+const $data = (p, key, value) => {
+  if (value === undefined) {
+    if (key === undefined) return $(p)[0]?.dataset;
+    return $(p)[0]?.dataset[key];
+  }
+  $(p).forEach(el => el.dataset[key] = value);
+  return $(p);
+};
+
+// Enhanced event handler with delegation support
+const $eonDelegated = (p, event, selector, handler) => {
+  if (typeof selector === 'function') {
+    // No delegation, selector is actually the handler
+    return $eon(p, event, selector);
+  }
+  // Event delegation
+  $(p).forEach(el => {
+    el.addEventListener(event, (e) => {
+      if (e.target.matches(selector)) {
+        handler.call(e.target, e);
+      }
+    });
+  });
+  return $(p);
+};
+
 // Add methods to NodeList prototype for chaining
 NodeList.prototype.$ea = function(fn) { return $ea(this, fn); };
-NodeList.prototype.$eon = function(e, fn) { return $eon(this, e, fn); };
+NodeList.prototype.$eon = function(e, fn, handler) { 
+  return handler ? $eonDelegated(this, e, fn, handler) : $eon(this, e, fn); 
+};
 NodeList.prototype.$addClass = function(c) { return $addClass(this, c); };
 NodeList.prototype.$removeClass = function(c) { return $removeClass(this, c); };
 NodeList.prototype.$toggleClass = function(c) { return $toggleClass(this, c); };
@@ -60,4 +141,14 @@ NodeList.prototype.$attr = function(n, v) { return $attr(this, n, v); };
 NodeList.prototype.$html = function(h) { return $html(this, h); };
 NodeList.prototype.$text = function(t) { return $text(this, t); };
 NodeList.prototype.$len = function() { return $len(this); };
+NodeList.prototype.$val = function(v) { return $val(this, v); };
+NodeList.prototype.$hasClass = function(c) { return $hasClass(this, c); };
+NodeList.prototype.$append = function(content) { return $append(this, content); };
+NodeList.prototype.$prepend = function(content) { return $prepend(this, content); };
+NodeList.prototype.$remove = function() { return $remove(this); };
+NodeList.prototype.$parent = function() { return $parent(this); };
+NodeList.prototype.$find = function(selector) { return $find(this, selector); };
+NodeList.prototype.$show = function() { return $show(this); };
+NodeList.prototype.$hide = function() { return $hide(this); };
+NodeList.prototype.$data = function(key, value) { return $data(this, key, value); };
 
