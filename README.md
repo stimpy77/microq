@@ -8,7 +8,7 @@ tl;dr drop-in alternative to jquery to put the thpark back in your vanilla JS
 const selectedElements = $("li.hello");
 ````
 
-### moar info below (because ChatGPT can, hence all the stupid emojis) ...
+### moar info below (yes generated, hence all the stupid emojis) ...
 
 ***“For those who once loved jQuery, but now live vanilla.”***
 
