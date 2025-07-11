@@ -151,4 +151,5 @@ NodeList.prototype.$find = function(selector) { return $find(this, selector); };
 NodeList.prototype.$show = function() { return $show(this); };
 NodeList.prototype.$hide = function() { return $hide(this); };
 NodeList.prototype.$data = function(key, value) { return $data(this, key, value); };
+NodeList.prototype.$eonDelegated = function(event, selector, handler) { return $eonDelegated(this, event, selector, handler); };
 
