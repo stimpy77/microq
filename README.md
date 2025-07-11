@@ -16,6 +16,10 @@ const selectedElements = $("li.hello");
 
 > 🍷 **No dependencies. No build tools. Just drop it in and dance.**
 
+## 🎯 Demo
+
+[**Live Demo**](https://claude.ai/public/artifacts/8733180f-5749-4b2e-bb69-1a8bfeef9f75) | [Demo Source](demo.html)
+
 ---
 
 ## 🚀 Quick Start
