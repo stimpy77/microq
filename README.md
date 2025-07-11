@@ -385,7 +385,3 @@ MIT — use it freely, remix, fork, or forget 🍻
 ## ✨ Author
 
 Made by [@stimpy77](https://github.com/stimpy77), with love for the DOM and dry humor.
-
----
-
-Let me know if you'd like this converted to `README.md` directly or styled for GitHub Pages.
