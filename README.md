@@ -20,13 +20,6 @@ const selectedElements = $("li.hello");
 
 ✨ **[**Live Interactive Demo**](https://stimpy77.github.io/thparq/demo.html)** ✨
 
-**Features showcased:**
-- 🎯 **Dynamic Form Builder** with live data updates
-- 🃏 **Interactive Card System** with drag & drop, starring, and filtering  
-- 🌳 **DOM Tree Explorer** with highlighting and manipulation
-- 💬 **Real-time Chat Simulator** with message stats
-- 🛝 **Live Code Playground** with runnable examples
-
 [Demo Source Code](docs/demo.html)
 
 ---
